@@ -1,0 +1,83 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>Order review <?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <div class="col-md-12">
+ <div class="order-summary clearfix">
+ <div class="section-title">
+ <h3 class="title">Order Review</h3>
+ </div>
+ <table class="shopping-cart-table table">
+ <thead>
+ <tr>
+ <th>Product</th>
+ <th></th>
+ <th class="text-center">Price</th>
+ <th class="text-center">Quantity</th>
+ <th class="text-center">Total</th>
+ <th class="text-right"></th>
+ </tr>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $orders; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <tr>
+ <td class="thumb"><img src="<?php echo static::e($order->path ? : '/placeholder.jpg'); ?>" alt=""></td>
+ <td class="details">
+ <a href="/products/<?php echo static::e($order->product_id); ?>"><?php echo static::e($order->title); ?></a>
+ <ul>
+ <li><span><?php if($order->variation_name): ?><span><?php echo static::e($order->variation_name); ?>: <?php echo static::e($order->variation); ?></span><?php endif; ?></span></li>
+ </ul>
+ </td>
+ <td class="price text-center"><strong><?php echo static::e(printPrice($order->promo_price!=null ? $order->promo_price : $order->price)); ?></strong><?php if($order->promo_price!=null): ?><br><del class="font-weak"><small><?php echo static::e(printPrice($order->price)); ?></small></del><?php endif; ?></td>
+ <td class="qty text-center">
+ <form action="/cart/<?php echo static::e($order->id); ?>" method="post">
+ <input class="input" name="qty" type="number" min="1" value="<?php echo static::e($order->qty); ?>">
+ <button class="btn btn-default"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update</button>
+ <?php echo csrf(); ?>
+
+ <input type="hidden" name="_method" value="PUT">
+ </form>
+ </td>
+ <td class="total text-center"><strong class="primary-color"><?php echo static::e(printPrice($order->promo_price!=null ? $order->promo_price * $order->qty : $order->price * $order->qty)); ?></strong></td>
+ <td class="text-right">
+ <form action="/cart/<?php echo static::e($order->id); ?>" method="post">
+ <button class="main-btn icon-btn"><i class="fa fa-close"></i></button>
+ <?php echo csrf(); ?>
+
+ <input type="hidden" name="_method" value="DELETE">
+ </form>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ <tfoot style="border-top: 1px solid #DADADA;">
+ <tr>
+ <th class="empty" colspan="3"></th>
+ <th>SUBTOTAL</th>
+ <th colspan="2" class="sub-total">$97.50</th>
+ </tr>
+ <tr>
+ <th class="empty" colspan="3"></th>
+ <th>SHIPING</th>
+ <td colspan="2">Free Shipping</td>
+ </tr>
+ <tr>
+ <th class="empty" colspan="3"></th>
+ <th>TOTAL</th>
+ <th colspan="2" class="total"><?php echo static::e(printPrice(\App\Models\ProductOrder::getTotalPrice($orders))); ?></th>
+ </tr>
+ </tfoot>
+ </table>
+ <div class="pull-right">
+ <a href="checkout" class="primary-btn">Checkout</a>
+ </div>
+ </div>
+ </div>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+
+
+<?php $this->stopSection(); ?>
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.master'); } ?>

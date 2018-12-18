@@ -1,0 +1,154 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>Edit Order <?php $this->stopSection(); ?>
+
+<?php $this->startSection('styles'); ?>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <!-- Main content -->
+ <section class="content">
+ <div class="row">
+ <div class="col-md-12 col-sm-12 col-lg-10">
+ <div class="box box-primary">
+ <div class="box-header with-border">
+ <h3 class="box-title">Edit Order</h3>
+ </div>
+ <!-- /.box-header -->
+ <!-- form start -->
+ <form method="post" class="form-horizontal" action="/admin/orders/<?php echo static::e($admin_orders->id); ?>">
+ <div class="box-body">
+ <div class="form-group">
+ <label for="firstname" class="col-sm-2 control-label">First Name</label>
+
+ <div class="col-sm-4">
+ <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname" value="<?php echo static::e(old('firstname', $admin_orders->firstname)); ?>">
+ </div>
+ <label for="lastname" class="col-sm-2 control-label">Last Name</label>
+
+ <div class="col-sm-4">
+ <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname" value="<?php echo static::e(old('lastname', $admin_orders->lastname)); ?>">
+ </div>
+ </div>
+ </div>
+
+ <div class="box-body">
+ <div class="form-group">
+ <label for="city" class="col-sm-2 control-label">City</label>
+
+ <div class="col-sm-4">
+ <input type="text" class="form-control" name="city" id="city" placeholder="City" value="<?php echo static::e(old('city', $admin_orders->city)); ?>">
+ </div>
+ <label for="address" class="col-sm-2 control-label">Address</label>
+
+ <div class="col-sm-4">
+ <input type="text" class="form-control" name="address" id="address" placeholder="Address" value="<?php echo static::e(old('address', $admin_orders->address)); ?>">
+ </div>
+ </div>
+ </div>
+
+ <div class="box-body">
+ <div class="form-group">
+ <label for="zip" class="col-sm-2 control-label">Zip</label>
+ <div class="col-sm-4">
+ <input type="text" class="form-control" name="zip" id="address" placeholder="Zip" value="<?php echo static::e(old('zip', $admin_orders->zip)); ?>">
+ </div>
+
+ <label for="phone" class="col-sm-2 control-label">Phone</label>
+ <div class="col-sm-4">
+ <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" value="<?php echo static::e(old('phone', $admin_orders->phone)); ?>">
+ </div>
+ </div>
+ </div>
+
+ <div class="box-body">
+ <div class="form-group">
+ <label for="email" class="col-sm-2 control-label">Email</label>
+ <div class="col-sm-4">
+ <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo static::e(old('email', $admin_orders->email)); ?>">
+ </div>
+
+ <label for="status" class="col-sm-2 control-label">Status</label>
+ <div class="col-sm-4">
+ <select name="status" id="status" class="form-control">
+ <?php $__currentLoopData = get_enum_values('orders', 'status'); $this->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <option value="<?php echo static::e($status); ?>"<?php if($status==$admin_orders->status): ?> selected <?php endif; ?>><?php echo static::e($status); ?></option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </div>
+ </div>
+ </div>
+
+ <!-- /.box-body -->
+ <div class="box-footer">
+ <button type="submit" class="btn btn-default pull-right">Save</button>
+ </div>
+ <input type="hidden" name="_method" value="PUT">
+ <?php echo csrf(); ?>
+
+ <!-- /.box-footer -->
+
+ </form>
+ </div>
+ </div>
+ </div>
+ <!-- /.row -->
+
+ <div class="row">
+ <div class="col-md-12 col-sm-12 col-lg-10">
+ <div class="box box-primary">
+ <table class="table table-striped">
+ <tbody>
+ <tr>
+ <th>Product</th>
+ <th>Variation Name</th>
+ <th>Variation</th>
+ <th>Price</th>
+ <th width="90">Qty</th>
+ <th>Total</th>
+ <th>Save</th>
+ </tr>
+ <?php $__currentLoopData = $product_orders; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $product_order): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <!-- form start -->
+ <form method="post" class="form-horizontal" action="/admin/productorders/<?php echo static::e($product_order->id); ?>">
+ <tr>
+ <td>
+ <div class="row" style="display: block">
+ <div class="col-md-2 col-lg-1" style="min-width: 30px;">
+ <img src="<?php echo static::e(\App\Models\Thumbnail::getThumbnail($product_order->picture_id)); ?>" alt="" style="width: 100%; min-width: 30px;">
+ </div>
+ <div class="col-md-10 col-lg-11">
+ <span style="vertical-align: top;"><?php echo static::e($product_order->title); ?></span>
+ </div>
+ </div>
+ </td>
+ <td><?php if($product_order->variation): ?><label for="variation-name" class="col-sm-1 control-label"><?php echo static::e($product_order->variation_name); ?></label><?php endif; ?> </td>
+ <td><?php if($product_order->variation): ?>
+ <select name="variation-name" id="variation-name" class="form-control">
+ <?php $__currentLoopData = explode('|', $product_order->variation_values); $this->addLoop($__currentLoopData); foreach($__currentLoopData as $variation): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <option value="<?php echo static::e($variation); ?>"<?php if($variation==$product_order->variation): ?> selected <?php endif; ?>><?php echo static::e($variation); ?></option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ <?php endif; ?>
+ </td>
+ <td><span><?php echo static::e(printPrice($product_order->price)); ?></span></td>
+ <td><input type="number" class="form-control text-center" name="qty" placeholder="Quantity" value="<?php echo static::e(old('qty', $product_order->qty)); ?>"></td>
+ <td><span><?php echo static::e(printPrice($product_order->price * $product_order->qty)); ?></span></td>
+ <td><button class="btn btn-success btn-sm btn-block"><i class="fa fa-pencil" aria-hidden="true"></i> Save</button></td>
+ </tr>
+ <input type="hidden" name="_method" value="PUT">
+ <?php echo csrf(); ?>
+
+ </form>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ </div>
+ </div>
+ </div>
+ </section>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+<?php $this->stopSection(); ?>
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.admin'); } ?>

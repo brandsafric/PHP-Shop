@@ -1,0 +1,211 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?><?php echo static::e($product->title); ?><?php $this->stopSection(); ?>
+
+<?php $this->startSection('styles'); ?>
+ <style>
+ .size-option > li > a{
+ cursor: pointer;
+ }
+ </style>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <!--  Product Details -->
+ <div class="product product-details clearfix">
+ <div class="col-md-6">
+ <div id="product-main-view">
+ <?php if(count($pictures)>0): ?>
+ <?php $__currentLoopData = $pictures; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $picture): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <div class="product-view">
+ <img src="<?php echo static::e($picture->path); ?>" alt="">
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ <?php else: ?>
+ <div class="product-view">
+ <img src="/placeholder.jpg" alt="">
+ </div>
+ <?php endif; ?>
+
+ </div>
+ <div id="product-view">
+ <?php $__currentLoopData = $thumbnails; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $thumbnail): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <div class="product-view">
+ <img src="<?php echo static::e($thumbnail); ?>" alt="">
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ </div>
+ <div class="col-md-6">
+ <div class="product-body">
+ <div class="product-label">
+ <?php if(\App\Models\Product::isNewProduct($product)): ?>
+ <span>New</span>
+ <?php endif; ?>
+ <?php if($product->promo_price): ?>
+ <span class="sale">-<?php echo static::e(round(($product->price - $product->promo_price) / ($product->price / 100))); ?>%</span>
+ <?php endif; ?>
+ </div>
+ <h2 class="product-name"><?php echo static::e($product->title); ?></h2>
+ <h3 class="product-price">
+ <?php if($product->promo_price && $product->promo_price!=0): ?>
+ <?php echo static::e(printPrice($product->promo_price)); ?>
+
+ <del class="product-old-price"><?php echo static::e(printPrice($product->price)); ?></del>
+ <?php elseif(!$product->promo_price): ?>
+ <?php echo static::e(printPrice($product->price)); ?>
+
+ <?php endif; ?>
+ </h3>
+ <div>
+ <?php if($product->rating!=null): ?>
+ <div class="product-rating">
+ <?php for($i=0; $i<round($product->rating); $i++): ?>
+ <i class="fa fa-star"></i>
+ <?php endfor; ?>
+ <?php for($i=round($product->rating); $i<5; $i++): ?>
+ <i class="fa fa-star-o empty"></i>
+ <?php endfor; ?>
+ </div>
+ <?php endif; ?>
+ <a data-toggle="tab" href="#tab2" id="add-review"><?php echo static::e(count($reviews)); ?> Review(s) / Add Review</a>
+ </div>
+ <p><strong>Availability:</strong> <?php echo static::e($product->availability); ?></p>
+ <p><strong>Brand:</strong> E-SHOP</p>
+ <?php echo $product->description; ?>
+
+ <form action="/order" method="post">
+ <?php if($product->variation_name): ?>
+ <div class="product-options">
+ <ul class="size-option">
+ <li><span class="text-uppercase"><?php echo static::e($product->variation_name); ?>:</span></li>
+ <?php $__currentLoopData = explode('|', $product->variation_values); $this->addLoop($__currentLoopData); foreach($__currentLoopData as $variation): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <li><a><?php echo static::e($variation); ?></a></li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ <input type="hidden" name="variation" id="variation">
+ </ul>
+ </div>
+ <?php endif; ?>
+ <input type="hidden" name="product-id" value="<?php echo static::e($product->id); ?>">
+ <div class="product-btns">
+ <div class="qty-input">
+ <span class="text-uppercase">QTY: </span>
+ <input class="input" name="qty" type="number" min="1" value="1">
+ </div>
+ <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+ <div class="pull-right">
+ <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+ <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+ <button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
+ </div>
+ </div>
+ <?php echo csrf(); ?>
+
+ </form>
+ </div>
+ </div>
+ <div class="col-md-12">
+ <div class="product-tab">
+ <ul class="tab-nav">
+ <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+ <li><a data-toggle="tab" href="#tab1">Details</a></li>
+ <li><a data-toggle="tab" href="#tab2" id="tab2-link">Reviews (<?php echo static::e(count($reviews)); ?>)</a></li>
+ </ul>
+ <div class="tab-content">
+ <div id="tab1" class="tab-pane fade in active">
+ <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+ irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+ </div>
+ <div id="tab2" class="tab-pane fade in">
+
+ <div class="row">
+ <div class="col-md-6">
+ <div class="product-reviews">
+ <?php $__currentLoopData = $reviews; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $review): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <div class="single-review">
+ <div class="review-heading">
+ <div><a href="#"><i class="fa fa-user-o"></i> <?php echo static::e($review->name); ?></a></div>
+ <div><a href="#"><i class="fa fa-clock-o"></i> <?php echo static::e(date('d M Y / G:i A', strtotime($review->created_at))); ?></a></div>
+ <div class="review-rating pull-right">
+ <?php for($i=0; $i<$review->rating; $i++): ?>
+ <i class="fa fa-star"></i>
+ <?php endfor; ?>
+ <?php for($i=$review->rating; $i<5; $i++): ?>
+ <i class="fa fa-star-o empty"></i>
+ <?php endfor; ?>
+ </div>
+ </div>
+ <div class="review-body">
+ <p><?php echo static::e($review->text); ?></p>
+ </div>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <ul class="reviews-pages">
+ <li class="active">1</li>
+ <li><a href="#">2</a></li>
+ <li><a href="#">3</a></li>
+ <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="col-md-6">
+ <h4 class="text-uppercase">Write Your Review</h4>
+ <p>Your email address will not be published.</p>
+ <form class="review-form" method="post" action="/products/<?php echo static::e($product->id); ?>/add-review">
+ <div class="form-group">
+ <input class="input" type="text" name="name" placeholder="Your Name" value="<?php echo static::e(old('name', (\Core\Data::userIsLoggedIn() ? $user->firstname . ' ' . $user->lastname  : ''))); ?>"/>
+ </div>
+ <div class="form-group">
+ <input class="input" type="email" name="email" placeholder="Email Address" value="<?php echo static::e(old('email' , \Core\Data::userIsLoggedIn() ?  $user->email : '')); ?>"/>
+ </div>
+ <div class="form-group">
+ <textarea class="input" name="text" placeholder="Your review"><?php echo static::e(old('text')); ?></textarea>
+ </div>
+ <div class="form-group">
+ <div class="input-rating">
+ <strong class="text-uppercase">Your Rating: </strong>
+ <div class="stars">
+ <input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
+ <input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
+ <input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
+ <input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
+ <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
+ </div>
+ </div>
+ </div>
+ <button class="primary-btn">Submit</button>
+ <?php echo csrf(); ?>
+
+ </form>
+ </div>
+ </div>
+
+
+
+ </div>
+ </div>
+ </div>
+ </div>
+
+ </div>
+ <!-- /Product Details -->
+ </div>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+ <script>
+ $('.size-option a').on('click', function () {
+ $('.size-option li').removeClass('active');
+ $(this).parent().addClass('active');
+ $('#variation').val($(this).text());
+ })
+ $('#add-review').on('click',function () {
+ $('#tab2-link').click();
+ $('html, body').animate({
+ scrollTop: $("#tab2-link").offset().top
+ }, 1000);
+ })
+ </script>
+<?php $this->stopSection(); ?>
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.master'); } ?>

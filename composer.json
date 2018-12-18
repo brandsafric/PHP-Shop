@@ -1,0 +1,14 @@
+{
+    "require": {
+      "eftec/bladeone": "^3.11"
+    },
+    "autoload": {
+        "psr-4": {
+             "Core\\": "Core/",
+             "App\\": "App/"
+        }
+    },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
+  }
+}

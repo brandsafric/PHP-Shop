@@ -1,0 +1,98 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>List Users <?php $this->stopSection(); ?>
+
+<?php $this->startSection('styles'); ?>
+ <style>
+ .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+ padding-right: 2px !important;
+ padding-left: 2px !important;
+ }
+ </style>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <!-- Main content -->
+ <section class="content">
+ <div class="row">
+ <div class="col-md-12">
+ <div class="box box-primary">
+ <div class="box-header">
+ <h3 class="box-title">List Users</h3>
+ </div>
+ <!-- /.box-header -->
+ <div class="box-body no-padding">
+ <table class="table table-striped">
+ <tbody>
+ <tr>
+ <th style="width: 10px">#</th>
+ <th>Email</th>
+ <th>Username</th>
+ <th>Password</th>
+ <th>Confirm</th>
+ <th>Sex</th>
+ <th>Role</th>
+ <th>Status</th>
+ <th>Save</th>
+ <th>Profile</th>
+ <th></th>
+ </tr>
+ <?php $__currentLoopData = $users; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <tr>
+ <td><?php echo static::e($user->id); ?></td>
+ <form action="/admin/users/<?php echo static::e($user->id); ?>" method="post">
+ <td><input type="text" class="form-control input-sm" name="email" value="<?php echo static::e($user->email); ?>"></td>
+ <td><input type="text" class="form-control input-sm" name="username" value="<?php echo static::e($user->username); ?>"></td>
+ <td><input type="password" class="form-control input-sm" name="password"></td>
+ <td><input type="password" class="form-control input-sm" name="password-confirm"></td>
+
+ <td><select name="sex" class="form-control input-sm">
+ <?php $__currentLoopData = $sex; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <option value="<?php echo static::e($s); ?>" <?php if($s==$user->sex): ?> selected <?php endif; ?>><?php echo static::e($s); ?></option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </td>
+ <td><select name="role" class="form-control input-sm">
+ <?php $__currentLoopData = $roles; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <option value="<?php echo static::e($role); ?>" <?php if($role==$user->role): ?> selected <?php endif; ?>><?php echo static::e($role); ?></option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </td>
+ <td><select name="status" class="form-control input-sm">
+ <?php $__currentLoopData = $statuses; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <option value="<?php echo static::e($status); ?>" <?php if($status==$user->status): ?> selected <?php endif; ?>><?php echo static::e($status); ?></option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </td>
+ <?php echo csrf(); ?>
+
+ <td><button class="btn btn-success btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Save</button></td>
+ <input type="hidden" name="_method" value="PUT">
+ <?php echo csrf(); ?>
+
+ </form>
+ <td><a href="/admin/users/<?php echo static::e($user->id); ?>/edit" class="btn btn-default btn-sm"><i class="fa fa-user" aria-hidden="true"></i> View Profile</a></td>
+ <td>
+ <form action="/admin/users/<?php echo static::e($user->id); ?>" method="post">
+ <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+ <input type="hidden" name="_method" value="DELETE">
+ <?php echo csrf(); ?>
+
+ </form>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ </div>
+ <!-- /.box-body -->
+ </div>
+ </div>
+ </div>
+ <!-- /.row -->
+ </section>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+<?php $this->stopSection(); ?>
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.admin'); } ?>

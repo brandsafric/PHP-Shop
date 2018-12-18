@@ -1,0 +1,350 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>Settings <?php $this->stopSection(); ?>
+
+<?php $this->startSection('styles'); ?>
+ <style>
+ .form-horizontal .control-label{
+ text-align: left;
+ }
+ .thumbnail img{
+ width: 95px;
+ }
+ .tab-content{
+ padding: 10px;
+ }
+ .small-img{
+ max-height: 50px;
+ max-width: 100%;
+ border: 1px solid lightgrey;
+ border-radius: 5px;
+ padding: 5px;
+ -webkit-box-shadow: 0 0 10px lightgrey;
+ box-shadow: 0 0 10px lightgrey;
+ }
+ </style>
+ <link rel="stylesheet" type="text/css" href="/css/image-picker.css">
+<?php $this->stopSection(); ?>
+
+
+<?php $this->startSection('content'); ?>
+ <!-- Main content -->
+
+ <section class="content">
+ <div class="row">
+ <div class="modal fade" id="modal-icon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ <div class="modal-dialog modal-lg" role="document">
+ <div class="modal-content">
+ <div class="modal-header">
+ <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ <h4 class="modal-title" id="myModalLabel">Pictures</h4>
+ </div>
+ <div class="modal-body">
+ <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+ <ul class="nav nav-tabs" id="myTabs" role="tablist">
+ <li role="presentation" id="upload">
+ <a href="#home1" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">Upload</a>                            </li>
+ <li role="presentation" class="active" id="select">
+ <a href="#profile1" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="true">Select</a>
+ </li>
+ </ul>
+ <div class="tab-content" id="myTabContent">
+ <div class="tab-pane fade" role="tabpanel" id="home1" aria-labelledby="home-tab">
+ <form id="submit_form2" action="/admin/upload" method="post" enctype="multipart/form-data">
+ <div class="form-group">
+ <input type="file" name="file[]" id="image_file" multiple style="display: none"/>
+ <div class="form-group">
+ <label for="width" class="col-sm-4 control-label">Crop</label>
+ <div class="col-sm-4">
+ <input type="number" min="1" class="form-control" name="width" placeholder="Width" value="<?php echo static::e($picture_dimensions[0]); ?>">
+ </div>
+ <div class="col-sm-4">
+ <input type="number" min="1" class="form-control" name="height" placeholder="Height" value="<?php echo static::e($picture_dimensions[1]); ?>">
+ </div>
+ </div>
+ </div>
+
+ <div class="row">
+ <!-- checkbox -->
+ <div class="form-group pull-right">
+ <label>
+ <input type="checkbox" class="minimal" name="crop" checked>
+ Crop
+ </label>
+ </div>
+ </div>
+ <?php echo csrf(); ?>
+
+ <div class="form-group pull-right">
+ <button type="button" class="btn btn-primary btn-sm" id="picture">Select Pictures</button>
+ <input type="submit" name="upload_button" class="btn btn-primary btn-sm" value="Upload" />
+ </div>
+ </form>
+ </div>
+ <div class="tab-pane fade active in" role="tabpanel" id="div-icon" aria-labelledby="profile-tab">
+ <form id="form-icon" method="post">
+ <input type="hidden" name="selected-id-icon" value="<?php echo static::e($icon_id!=null ? $icon_id : null); ?>">
+ <input type="hidden" name="suffix" value="icon">
+ <?php echo csrf(); ?>
+
+ </form>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="modal-footer">
+ <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ <button type="button" id="save-changes-icon" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="modal fade" id="modal-logo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ <div class="modal-dialog modal-lg" role="document">
+ <div class="modal-content">
+ <div class="modal-header">
+ <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ <h4 class="modal-title" id="myModalLabel">Pictures</h4>
+ </div>
+ <div class="modal-body">
+ <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+ <ul class="nav nav-tabs" id="myTabs" role="tablist">
+ <li role="presentation" id="upload">
+ <a href="#upload-logo-tab" id="home-tab" role="tab" data-toggle="tab" aria-controls="upload-logo-tab" aria-expanded="false">Upload</a>                            </li>
+ <li role="presentation" class="active" id="select">
+ <a href="#div-logo" role="tab" id="profile-tab" data-toggle="tab" aria-controls="div-logo" aria-expanded="true">Select</a>
+ </li>
+ </ul>
+ <div class="tab-content" id="myTabContent">
+ <div class="tab-pane fade" role="tabpanel" id="upload-logo-tab" aria-labelledby="home-tab">
+ <form id="submit_form2" action="/admin/upload" method="post" enctype="multipart/form-data">
+ <div class="form-group">
+ <input type="file" name="file[]" id="image_file-logo" multiple style="display: none"/>
+ <div class="form-group">
+ <label for="width" class="col-sm-4 control-label">Crop</label>
+ <div class="col-sm-4">
+ <input type="number" min="1" class="form-control" name="width" placeholder="Width" value="<?php echo static::e($picture_dimensions[0]); ?>">
+ </div>
+ <div class="col-sm-4">
+ <input type="number" min="1" class="form-control" name="height" placeholder="Height" value="<?php echo static::e($picture_dimensions[1]); ?>">
+ </div>
+ </div>
+ </div>
+
+ <div class="row">
+ <!-- checkbox -->
+ <div class="form-group pull-right">
+ <label>
+ <input type="checkbox" class="minimal" name="crop" checked>
+ Crop
+ </label>
+ </div>
+ </div>
+ <?php echo csrf(); ?>
+
+ <div class="form-group pull-right">
+ <button type="button" class="btn btn-primary btn-sm" id="picture-logo">Select Pictures</button>
+ <input type="submit" name="upload_button" class="btn btn-primary btn-sm" value="Upload" />
+ </div>
+ </form>
+ </div>
+ <div class="tab-pane fade active in" role="tabpanel" id="div-logo" aria-labelledby="profile-tab">
+ <form id="form-logo" method="post">
+ <input type="hidden" name="selected-id-logo" value="<?php echo static::e($logo!=null ? $logo->id : null); ?>">
+ <input type="hidden" name="suffix" value="logo">
+ <?php echo csrf(); ?>
+
+ </form>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="modal-footer">
+ <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ <button type="button" id="save-changes-logo" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <form class="form-horizontal" method="post" action="/admin/thumbnails-settings">
+ <div class="col-md-8 col-lg-6">
+ <div class="box box-primary">
+ <div class="box-header with-border">
+ <h3 class="box-title">Settings</h3>
+ </div>
+ <div class="box-body">
+
+ <div class="col-md-12">
+ <fieldset>
+ <!-- form start -->
+ <legend>Pictures</legend>
+ <div class="box-body">
+ <div class="form-group">
+ <label for="width" class="col-sm-4 control-label">Pictures</label>
+ <div class="col-sm-4">
+ <input type="number" min="1" class="form-control" name="picture-width" placeholder="Picture Width" value="<?php echo static::e(old('picture-width', $picture_dimensions[0] )); ?>">
+ </div>
+ <div class="col-sm-4">
+ <input type="number" min="1" class="form-control" name="picture-height" placeholder="Picture Height" value="<?php echo static::e(old('picture-height', $picture_dimensions[1] )); ?>">
+ </div>
+ </div>
+ <?php $__currentLoopData = $thumbnails; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$thumbnail): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <div class="form-group">
+ <label for="width" class="col-sm-4 control-label">Thumbnail #<?php echo static::e($key+1); ?></label>
+ <div class="col-sm-4">
+ <input type="number" min="1" class="form-control" name="width[]" placeholder="Width" value="<?php echo static::e(explode(':', $thumbnail)[0]); ?>">
+ </div>
+ <div class="col-sm-4">
+ <input type="number" min="1" class="form-control" name="height[]" placeholder="Height" value="<?php echo static::e(explode(':', $thumbnail)[1]); ?>">
+ </div>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ <div class="form-group">
+ <div class="col-md-4">
+ <a href="#" id="site-icon" data-toggle="modal" class="btn btn-sm btn-default pull-right" data-target="#modal-icon">Select Site Icon</a>
+ </div>
+ <div class="col-md-3">
+ <img src="<?php echo static::e($icon); ?>" class="small-img" id="icon" name="icon" alt="">
+ <input type="hidden" id="picture-id-icon" name="picture-id-icon" value="<?php echo static::e($icon_id); ?>">
+ </div>
+ </div>
+ <div class="form-group">
+ <div class="col-md-4">
+ <a href="#" id="site-logo" data-toggle="modal" class="btn btn-sm btn-default pull-right" data-target="#modal-logo">Select Site Logo</a>
+ </div>
+ <div class="col-md-3">
+ <img src="<?php echo static::e($logo!=null ? $logo->path : ''); ?>" class="small-img" id="logo" name="logo"  alt="">
+ <input type="hidden" id="picture-id-logo" name="picture-id-logo" value="<?php echo static::e($logo!=null ? $logo->id : null); ?>">
+ </div>
+ </div>
+ <!-- /.col -->
+ </div>
+ <!-- /.box-footer -->
+ <?php echo csrf(); ?>
+
+ </fieldset>
+ <!-- /.box-header -->
+ <!-- form start -->
+ <fieldset>
+ <legend>Price</legend>
+ <div class="box-body">
+ <div class="form-group">
+ <label for="currency-symbol" class="col-sm-6 control-label">Symbol</label>
+ <div class="col-sm-6">
+ <input type="text" class="form-control" name="currency-symbol" value="<?php echo static::e($currency_symbol); ?>">
+ </div>
+ </div>
+ <div class="form-group">
+ <label for="position-symbol" class="col-sm-6 control-label">Position</label>
+ <div class="col-sm-6">
+ <select name="position-symbol" id="position-symbol" class="form-control">
+ <option value="left" <?php if($position_symbol=='left'): ?>selected <?php endif; ?>>Left</option>
+ <option value="right" <?php if($position_symbol=='right'): ?>selected <?php endif; ?>>Right</option>
+ </select>
+ </div>
+ </div>
+ <div class="form-group">
+ <label for="position-symbol" class="col-sm-6 control-label">With Interval</label>
+ <input type="checkbox" name="currency-with-interval" value="yes" <?php if($currency_with_interval=='yes'): ?>checked <?php endif; ?> class="minimal">
+ </div>
+ </div>
+ </fieldset>
+
+ <fieldset>
+ <legend>Other</legend>
+ <div class="box-body">
+ <div class="form-group">
+ <label for="currency-symbol" class="col-sm-6 control-label">New Product in Days</label>
+ <div class="col-sm-6">
+ <input type="text" class="form-control" name="new-product" value="<?php echo static::e($new_product); ?>">
+ </div>
+ </div>
+ </div>
+ <div class="box-body">
+ <div class="form-group">
+ <label for="currency-symbol" class="col-sm-6 control-label">Site Title</label>
+ <div class="col-sm-6">
+ <input type="text" class="form-control" name="site-title" value="<?php echo static::e($site_title); ?>">
+ </div>
+ </div>
+ </div>
+ <div class="box-body">
+ <div class="form-group">
+ <label for="currency-symbol" class="col-sm-3 control-label">Footer Text</label>
+ <div class="col-sm-9">
+ <textarea class="form-control" name="footer-text" rows="5"><?php echo static::e($footer_text); ?></textarea>
+ </div>
+ </div>
+ </div>
+ </fieldset>
+
+ </div>
+ </div>
+ <div class="box-footer">
+ <button type="submit" class="btn btn-default">Save</button>
+ </div>
+ </div>
+ </div>
+ </form>
+ </div>
+ </section>
+ <!-- /Main content -->
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+ <script src="/js/image-picker.js"></script>
+ <script>
+ $(document).ready(function(){
+ $(document).on('click', '#picture', function(){
+ $("#image_file").click();
+ });
+ $(document).on('click', '#picture-logo', function(){
+ $("#image_file-logo").click();
+ });
+
+ });
+ $(document).on('click', '#site-icon', function(){
+ $("#form-icon").submit();
+ });
+ $('#form-icon').on('submit', function(e){
+ e.preventDefault();
+ $.ajax({
+ url:"/admin/select-picture/",
+ method:"POST",
+ data:new FormData(this),
+ contentType:false,
+ //cache:false,
+ processData:false,
+ success:function(data)
+ {
+ $('#div-icon').html(data);
+ }
+ })
+ });
+
+
+ $(document).on('click', '#site-logo', function(){
+ $("#form-logo").submit();
+ });
+ $('#form-logo').on('submit', function(e){
+ e.preventDefault();
+ $.ajax({
+ url:"/admin/select-picture/",
+ method:"POST",
+ data:new FormData(this),
+ contentType:false,
+ //cache:false,
+ processData:false,
+ success:function(data)
+ {
+ $('#div-logo').html(data);
+ }
+ })
+ });
+ </script>
+<?php $this->stopSection(); ?>
+
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.admin'); } ?>

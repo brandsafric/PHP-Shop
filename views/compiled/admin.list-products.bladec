@@ -1,0 +1,98 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>List Products <?php $this->stopSection(); ?>
+
+<?php $this->startSection('styles'); ?>
+ <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+ <style>
+ #example1 img{
+ width: 50px;
+ }
+ .btn {
+ padding-right: 10px !important;
+ }
+ </style>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <!-- Main content -->
+ <section class="content">
+ <div class="row">
+ <div class="col-xs-12">
+ <div class="box">
+ <div class="box-header">
+ <h3 class="box-title">List Products</h3>
+ </div>
+ <!-- /.box-header -->
+ <div class="box-body">
+ <table id="example1" class="table table-bordered table-striped">
+ <thead>
+ <tr>
+ <th>#</th>
+ <th><i class="fa fa-fw fa-file-image-o"></i></th>
+ <th>Title</th>
+ <th>Availability</th>
+ <th>Price</th>
+ <th>Promo Price</th>
+ <th>Edit</th>
+ <th>Delete</th>
+ </tr>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $products; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$product): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <tr>
+ <td><?php echo static::e($key + 1); ?></td>
+ <td><?php if($product->path): ?><img src="<?php echo static::e($product->path); ?>" alt=""><?php endif; ?></td>
+ <td><a href="/admin/products/<?php echo static::e($product->id); ?>/edit"><?php echo static::e($product->title); ?></a></td>
+ <td><?php echo static::e($product->availability); ?></td>
+ <td><?php echo static::e($product->price); ?></td>
+ <td><?php echo static::e($product->promo_price); ?></td>
+ <td>
+ <a href="/admin/products/<?php echo static::e($product->id); ?>/edit" class="btn btn-success btn-block btn-xs"><i class="fa fa-fw fa-edit"></i> Edit</a>
+ </td>
+ <td>
+ <form action="/admin/products/<?php echo static::e($product->id); ?>" method="post">
+ <button type="submit" class="btn btn-danger btn-block btn-xs"><i class="fa fa-fw fa-remove"></i> Delete</button>
+ <input type="hidden" name="_method" value="DELETE">
+ <?php echo csrf(); ?>
+
+ </form>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ <tfoot>
+ <tr>
+ <th>#</th>
+ <th><i class="fa fa-fw fa-file-image-o"></i></th>
+ <th>Title</th>
+ <th>Availability</th>
+ <th>Price</th>
+ <th>Promo Price</th>
+ <th>Edit</th>
+ <th>Delete</th>
+ </tr>
+ </tfoot>
+ </table>
+ </div>
+ <!-- /.box-body -->
+ </div>
+ <!-- /.box -->
+ </div>
+ <!-- /.col -->
+ </div>
+ <!-- /.row -->
+ </section>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+ <!-- DataTables -->
+ <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+ <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+ <script>
+ $(function () {
+ $('#example1').DataTable()
+ })
+ </script>
+<?php $this->stopSection(); ?>
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.admin'); } ?>

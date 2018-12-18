@@ -1,0 +1,85 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>Orders <?php $this->stopSection(); ?>
+
+<?php $this->startSection('styles'); ?>
+ <style>
+ .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+ padding-right: 5px !important;
+ padding-left: 5px !important;
+ }
+ a{
+ font-weight: bold;
+ }
+ .top-div{
+ margin-bottom: 20px;
+ }
+ </style>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <!-- Main content -->
+ <section class="content">
+ <div class="col-md-12 top-div">
+ <form action="" class="form-horizontal">
+ <label for="order-id" class="col-sm-1 control-label">Order ID</label>
+ <div class="col-sm-3">
+ <input type="text" class="form-control" name="order-id" autocomplete="off"<?php if(isset($_GET['order-id'])): ?> value="<?php echo static::e($_GET['order-id']); ?>"<?php endif; ?>>
+ </div>
+ <label for="status" class="col-sm-1 control-label">Status</label>
+ <div class="col-sm-3">
+ <select name="status" id="status" class="form-control">
+ <option value="">Any</option>
+ <?php $__currentLoopData = $statuses; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <option value="<?php echo static::e($status); ?>" <?php if(isset($_GET['status']) && $_GET['status']==$status): ?> selected <?php endif; ?>><?php echo static::e($status); ?></option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </div>
+ <button class="btn btn-primary">Show</button>
+ </form>
+ </div>
+ <div class="row">
+ <div class="col-md-12">
+ <div class="box box-primary">
+ <!-- /.box-header -->
+ <div class="box-body no-padding">
+ <table class="table table-striped">
+ <tbody>
+ <tr>
+ <th>Order</th>
+ <th>Delivery to</th>
+ <th>Num Products</th>
+ <th>Date</th>
+ <th>Price</th>
+ <th class="text-center">Status</th>
+ <th>View</th>
+ </tr>
+ <?php $__currentLoopData = $admin_orders; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <tr>
+ <td><a href="/admin/orders/<?php echo static::e($order->id); ?>">#<?php echo static::e($order->id); ?></a> by <a href="/admin/order/<?php echo static::e($order->firstname . ' ' . $order->lastname); ?>"><?php echo static::e($order->firstname . ' ' . $order->lastname); ?></a><br><?php echo static::e($order->email); ?></td>
+ <td><?php echo static::e($order->address); ?><br><?php echo static::e($order->city); ?></td>
+ <td><?php echo static::e($order->num_items); ?></td>
+ <td><?php echo static::e($order->created_at); ?></td>
+ <td><?php echo static::e(printPrice($order->total_price)); ?></td>
+ <td class="text-center"><span class="badge <?php echo static::e(\App\Models\Order::getStatusBadgeColor($order->status)); ?>"><?php echo static::e($order->status); ?></span></td>
+ <td><a href="/admin/orders/<?php echo static::e($order->id); ?>" class="btn btn-default btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> </a></td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ </div>
+ <!-- /.box-body -->
+ </div>
+ <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0">
+ <?php echo $pagination; ?>
+
+ </div>
+ </div>
+ </div>
+ <!-- /.row -->
+ </section>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+<?php $this->stopSection(); ?>
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.admin'); } ?>

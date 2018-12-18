@@ -1,0 +1,143 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?><?php echo static::e($title); ?><?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <div class="row">
+ <!-- section title -->
+ <div class="col-md-12">
+ <div class="section-title">
+ <h2 class="title"><?php echo static::e($header); ?></h2>
+ </div>
+ </div>
+ <!-- section title -->
+
+ <?php if(!$homepage): ?>
+ <div class="row">
+ <div class="col-sm-4 col-md-10">
+ <form action="/set-sort-type" method="post" id="form-sort" class="form-horizontal">
+ <div class="form-group col-sm-6 col-md-4">
+ <label for="sort" class="col-sm-3 col-md-4 control-label text-right">Sort by</label>
+
+ <div class="col-sm-8">
+ <select name="sort" id="sort" class="form-control">
+ <option value="newest"<?php if($sort=='newest'): ?> selected <?php endif; ?>>Newest</option>
+ <option value="lower-price"<?php if($sort=='lower-price'): ?> selected <?php endif; ?>>Lower Price</option>
+ <option value="higher-price"<?php if($sort=='higher-price'): ?> selected <?php endif; ?>>Higher Price</option>
+ </select>
+ </div>
+ <button class="btn" id="btn-sort"><i class="fa fa-search" aria-hidden="true"></i></button>
+ </div>
+ <div class="form-group col-sm-6 col-md-4">
+ <label for="products-per-page" class="col-sm-3 col-md-4 control-label text-right">Sort by</label>
+
+ <div class="col-sm-4">
+ <select name="products-per-page" id="products-per-page" class="form-control">
+ <option value="12"<?php if($products_per_page=='12'): ?> selected <?php endif; ?>>12</option>
+ <option value="24"<?php if($products_per_page=='24'): ?> selected <?php endif; ?>>24</option>
+ <option value="36"<?php if($products_per_page=='36'): ?> selected <?php endif; ?>>36</option>
+ </select>
+ </div>
+ </div>
+ <?php echo csrf(); ?>
+
+ </form>
+ </div>
+ </div>
+ <?php endif; ?>
+ <?php $__currentLoopData = $products; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$product): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <!-- Product Single -->
+ <?php if($key % 4==0): ?>
+ <div class="col-md-12">
+ <?php endif; ?>
+ <div class="col-md-3 col-sm-6 col-xs-6">
+ <div class="product product-single">
+ <a href="/products/<?php echo static::e($product->id); ?>">
+ <div class="product-thumb">
+ <div class="product-label">
+ <?php if(\App\Models\Product::isNewProduct($product)): ?>
+ <span>New</span>
+ <?php endif; ?>
+ <?php if($product->promo_price && $product->promo_price!=0): ?>
+ <span class="sale">-<?php echo static::e(round(($product->price - $product->promo_price) / ($product->price / 100))); ?>%</span>
+ <?php endif; ?>
+ </div>
+ <button type="button" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+ <?php if($product->picture_id != null): ?>
+ <img src="<?php echo static::e(\Core\Model::query("SELECT thumbnails.path FROM thumbnails WHERE picture_id='$product->picture_id'")[0]->path); ?>" alt="">
+ <?php else: ?>
+ <img src="/placeholder.jpg" alt="">
+ <?php endif; ?>
+ </div>
+ </a>
+ <div class="product-body">
+ <h3 class="product-price">
+ <?php if(!$product->promo_price): ?>
+ <?php echo static::e(printPrice($product->price)); ?>
+
+ <?php elseif($product->promo_price && $product->promo_price!=0): ?>
+ <del class="product-old-price"><?php echo static::e(printPrice($product->price)); ?></del>
+ <?php echo static::e(printPrice($product->promo_price)); ?>
+
+ <?php endif; ?>
+ </h3>
+ <div class="product-rating">
+ <?php if(!$product->rating==null): ?>
+ <?php for($i=0; $i<round($product->rating); $i++): ?>
+ <i class="fa fa-star"></i>
+ <?php endfor; ?>
+ <?php for($i=round($product->rating); $i<5; $i++): ?>
+ <i class="fa fa-star-o empty"></i>
+ <?php endfor; ?>
+ <?php endif; ?>
+ </div>
+ <h2 class="product-name"><a href="/products/<?php echo static::e($product->id); ?>"><?php echo static::e($product->title); ?></a></h2>
+ <form action="/order" method="post" class="form-horizontal">
+ <div class="product-btns">
+ <button type="button" class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+ <button type="button" class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+ <?php if($product->variation_name): ?>
+ <a href="/products/<?php echo static::e($product->id); ?>" class="primary-btn add-to-cart"><i class="fa fa-cog" aria-hidden="true"></i> Options</a>
+ <?php else: ?>
+ <input name="qty" type="hidden" value="1">
+ <input type="hidden" name="product-id" value="<?php echo static::e($product->id); ?>">
+ <?php echo csrf(); ?>
+
+ <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+ <?php endif; ?>
+ </div>
+ </form>
+ </div>
+ </div>
+ </div>
+ <!-- /Product Single -->
+ <?php if(($key + 1)%4==0): ?>
+ </div>
+ <?php endif; ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ <?php if($pagination): ?>
+ <div class="col-md-4 text-center" style="padding-right: 0; padding-left: 0">
+ <?php echo $pagination; ?>
+
+ </div>
+ <?php endif; ?>
+ </div>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+ <script>
+ $( document ).ready(function() {
+ $('#btn-sort').hide();
+ });
+ $('#sort').on('change', function () {
+ $('#form-sort').submit();
+ })
+ $('#products-per-page').on('change', function () {
+ $('#form-sort').submit();
+ })
+ </script>
+<?php $this->stopSection(); ?>
+
+
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.master'); } ?>

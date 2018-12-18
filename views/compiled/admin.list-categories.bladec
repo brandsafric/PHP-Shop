@@ -1,0 +1,65 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>Edit / Delete Categories <?php $this->stopSection(); ?>
+
+
+<?php $this->startSection('content'); ?>
+ <!-- Main content -->
+ <section class="content col-md-8">
+ <table class="table table-striped categories-table">
+ <tbody>
+ <tr>
+ <th style="width: 10px">#</th>
+ <th>Name</th>
+ <th>Alias</th>
+ <th>Parent ID</th>
+ <th>Save</th>
+ <th>Delete</th>
+ </tr>
+ <tr>
+ <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$category): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <form action="/admin/categories/<?php echo static::e($category->id); ?>" method="post">
+ <td><?php echo static::e($key+1); ?></td>
+ <td>
+ <input type="text" name="name" class="form-control input-sm" value="<?php echo static::e($category->name); ?>">
+ </td>
+ <td>
+ <input type="text" name="alias" class="form-control input-sm" value="<?php echo static::e($category->alias); ?>">
+ </td>
+ <td>
+ <select name="parent" id="parent" class="form-control input-sm" >
+ <option value="">Without Parent</option>
+ <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
+ <?php if($cat->id != $category->id): ?>
+ <option value="<?php echo static::e($cat->id); ?>" <?php if($cat->id==$category->parent_id): ?> selected <?php endif; ?>><?php echo static::e($cat->name); ?></option>
+ <?php endif; ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </td>
+ <input type="hidden" name="_method" value="PUT">
+ <td>
+ <input type="submit" name="submit" class="btn btn-success btn-xs btn-block" value="Save">
+ </td>
+ <?php echo csrf(); ?>
+
+ </form>
+ <td>
+ <form action="/admin/categories/<?php echo static::e($category->id); ?>" method="post">
+ <input type="submit" name="submit" class="btn btn-danger btn-xs btn-block" value="Delete">
+ <input type="hidden" name="_method" value="DELETE">
+ <?php echo csrf(); ?>
+
+ </form>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ </section>
+ <!-- /.content -->
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+
+<?php $this->stopSection(); ?>
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.admin'); } ?>
