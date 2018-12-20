@@ -354,3 +354,8 @@ function paginator(&$current_page, $page_num)
     }
     return $html;
 }
+
+function have_post($name)
+{
+    return isset($_POST[$name]) && $_POST[$name] != '';
+}

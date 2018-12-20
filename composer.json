@@ -1,6 +1,7 @@
 {
     "require": {
-      "eftec/bladeone": "^3.11"
+      "eftec/bladeone": "^3.11",
+        "nesbot/carbon": "^2.8"
     },
     "autoload": {
         "psr-4": {

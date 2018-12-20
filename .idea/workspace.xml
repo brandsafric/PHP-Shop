@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d28fb1a1-7c3b-4ee5-b404-d0e548d64c82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/temp/web_shop.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/error.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/forgot-password.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/recovery-password.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Controllers/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Error.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Error.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/add-product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/add-product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/edit-product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/edit-product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/compiled/admin.add-product.bladec" beforeDir="false" afterPath="$PROJECT_DIR$/views/compiled/admin.add-product.bladec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/compiled/admin.edit-product.bladec" beforeDir="false" afterPath="$PROJECT_DIR$/views/compiled/admin.edit-product.bladec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/compiled/home.bladec" beforeDir="false" afterPath="$PROJECT_DIR$/views/compiled/home.bladec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.blade.php" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-559474548">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="php" value="25" />
+          <entry key="sql" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Blade" value="11" />
+          <entry key="PHP" value="14" />
+          <entry key="SQL" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="php" value="941" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Blade" value="475" />
+          <entry key="HTML" value="2" />
+          <entry key="PHP" value="464" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-330" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/Controllers/Users.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#35#49#0#PHP" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/admin/add-product.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="358" column="36" selection-start-line="358" selection-start-column="33" selection-end-line="358" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Core/Model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="488">
+              <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Core/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="830">
+              <caret line="361" lean-forward="true" selection-start-line="361" selection-end-line="361" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/Config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/signin.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/forgot-password.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" selection-start-line="2" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/recovery-password.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/layouts/master.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" selection-start-line="9" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>#picture</find>
+      <find>text1</find>
+      <find>profile-pi</find>
+      <find>form-pic</find>
+      <find>div-pi</find>
+      <find>id=&quot;div-picture&quot;</find>
+      <find>myModal</find>
+      <find>suff</find>
+      <find>icon</find>
+      <find>alert</find>
+      <find>save-</find>
+      <find>select-picture</find>
+      <find>form-p</find>
+      <find>aria-labelledby=&quot;profile-tab&quot;</find>
+      <find>product-pi</find>
+      <find>&lt;form</find>
+      <find>id=&quot;picture</find>
+      <find>data-t</find>
+      <find>select pi</find>
+      <find>select pr</find>
+      <find>Select Pro</find>
+      <find>recov</find>
+      <find>title</find>
+      <find>have</find>
+      <find>havep</find>
+      <find>havepo</find>
+      <find>have_p</find>
+      <find>up</find>
+      <find>view</find>
+      <find>var</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>form-picture</replace>
+      <replace>div-picture</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/views/error.blade.php" />
+        <option value="$PROJECT_DIR$/Core/Error.php" />
+        <option value="$PROJECT_DIR$/views/home.blade.php" />
+        <option value="$PROJECT_DIR$/views/admin/settings.blade.php" />
+        <option value="$PROJECT_DIR$/views/admin/add-product.blade.php" />
+        <option value="$PROJECT_DIR$/App/Controllers/Admin.php" />
+        <option value="$PROJECT_DIR$/views/admin/edit-product.blade.php" />
+        <option value="$PROJECT_DIR$/views/forgot-password.blade.php" />
+        <option value="$PROJECT_DIR$/views/layouts/master.blade.php" />
+        <option value="$PROJECT_DIR$/App/Config.php" />
+        <option value="$PROJECT_DIR$/views/recovery-password.blade.php" />
+        <option value="$PROJECT_DIR$/Core/functions.php" />
+        <option value="$PROJECT_DIR$/App/Controllers/Users.php" />
+        <option value="$PROJECT_DIR$/Core/Model.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/public_html/bower_components/Flot/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/bootstrap-datepicker/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/bootstrap-daterangepicker/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/bootstrap/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/chart.js/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/ckeditor/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/eve-raphael/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/ion.rangeSlider/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/jquery-knob/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/jquery-slimscroll/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/jquery-ui/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/morris.js/package.json" />
+      <path value="$PROJECT_DIR$/public_html/bower_components/select2/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/eftec/bladeone" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PHP-Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PHP-Shop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PHP-Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PHP-Shop" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PHP-Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PHP-Shop" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PHP-Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PHP-Shop" type="462c0819:PsiDirectoryNode" />
+              <item name="Core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PHP-Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PHP-Shop" type="462c0819:PsiDirectoryNode" />
+              <item name="public_html" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PHP-Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PHP-Shop" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PHP-Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PHP-Shop" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="edit&#9;FILE&#9;file://C:/xampp/htdocs/shop1/02/PHP-Shop/views/admin/edit-product.blade.php&#10;add&#9;FILE&#9;file://C:/xampp/htdocs/shop1/02/PHP-Shop/views/admin/add-product.blade.php&#10;user&#9;FILE&#9;file://C:/xampp/htdocs/shop1/02/PHP-Shop/App/Controllers/Users.php&#10;mode&#9;FILE&#9;file://C:/xampp/htdocs/shop1/02/PHP-Shop/Core/Model.php&#10;fun&#9;FILE&#9;file://C:/xampp/htdocs/shop1/02/PHP-Shop/Core/functions.php&#10;con&#9;FILE&#9;file://C:/xampp/htdocs/shop1/02/PHP-Shop/App/Config.php&#10;master&#9;FILE&#9;file://C:/xampp/htdocs/shop1/02/PHP-Shop/views/layouts/master.blade.php&#10;inde&#9;FILE&#9;file://C:/xampp/htdocs/shop1/02/PHP-Shop/public_html/index.php&#10;edit-&#9;null&#9;null" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../shop/shop" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\shop1\02\PHP-Shop\views" />
+      <recent name="C:\xampp\htdocs\shop1\02\PHP-Shop\temp" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d28fb1a1-7c3b-4ee5-b404-d0e548d64c82" name="Default Changelist" comment="" />
+      <created>1545207875734</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1545207875734</updated>
+      <workItem from="1545207878456" duration="3382000" />
+      <workItem from="1545213562351" duration="14056000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="17438000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18070363" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/temp/web_shop.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/error.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Error.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Controllers/Products.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-660" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/settings.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="309" column="34" selection-start-line="309" selection-start-column="28" selection-end-line="309" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Controllers/Admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/edit-product.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="278" selection-start-line="278" selection-end-line="278" />
+          <folding>
+            <element signature="e#2596#2617#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/signin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layouts/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" selection-start-line="9" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/forgot-password.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="2" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/recovery-password.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Data.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="830">
+          <caret line="361" lean-forward="true" selection-start-line="361" selection-end-line="361" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Controllers/Users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#35#49#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/add-product.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="358" column="36" selection-start-line="358" selection-start-column="33" selection-end-line="358" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

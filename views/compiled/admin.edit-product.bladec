@@ -30,7 +30,7 @@
  <!-- left column -->
  <div class="col-md-12">
 
- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ <div class="modal fade" id="modal-picture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
  <div class="modal-dialog modal-lg" role="document">
  <div class="modal-content">
  <div class="modal-header">
@@ -44,7 +44,7 @@
  <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">Upload</a>
  </li>
  <li role="presentation" class="active" id="select">
- <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="true">Select</a>
+ <a href="#div-picture" role="tab" id="div-picture-tab" data-toggle="tab" aria-controls="div-picture" aria-expanded="true">Select</a>
  </li>
  </ul>
  <div class="tab-content" id="myTabContent">
@@ -75,7 +75,7 @@
  </div>
  </div>
  <div class="form-group pull-right">
- <button type="button" class="btn btn-primary btn-sm" id="picture">Select Pictures</button>
+ <button type="button" class="btn btn-primary btn-sm" id="select-picture1">Select Pictures</button>
  <input type="submit" name="upload_button" class="btn btn-primary btn-sm" value="Upload" />
  </div>
  <?php echo csrf(); ?>
@@ -84,10 +84,10 @@
  </div>
  </div>
  </div>
- <div class="tab-pane fade active in" role="tabpanel" id="div-product-picture" aria-labelledby="profile-tab">
- <form id="form-product-picture" method="post">
- <input type="hidden" name="selected-id-product-picture" value="<?php echo static::e($product->picture_id); ?>">
- <input type="hidden" name="suffix" value="product-picture">
+ <div class="tab-pane fade active in" role="tabpanel" id="div-picture" aria-labelledby="div-picture-tab">
+ <form id="form-picture" method="post">
+ <input type="hidden" name="selected-id-picture" >
+ <input type="hidden" name="suffix" value="picture">
  <?php echo csrf(); ?>
 
  </form>
@@ -96,8 +96,8 @@
  </div>
  </div>
  <div class="modal-footer">
- <button type="button" id="cancel" class="btn btn-default" data-dismiss="modal">Close</button>
- <button type="button" id="save-changes-product-picture" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+ <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ <button type="button" id="save-changes-picture" class="btn btn-primary" data-dismiss="modal">Save changes</button>
  </div>
  </div>
  </div>
@@ -149,12 +149,13 @@
 
  </form>
  </div>
- <div class="tab-pane fade active in" role="tabpanel" id="profile1" aria-labelledby="profile-tab">
- <form id="product-picture1" method="post">
+ <div class="tab-pane fade active in" role="tabpanel" id="div-picture" aria-labelledby="div-picture-tab">
+ <form id="form-picture" method="post">
+ <input type="hidden" name="selected-id-picture" >
+ <input type="hidden" name="suffix" value="picture">
  <?php echo csrf(); ?>
 
  </form>
-
  </div>
  <form id="product-picture3" method="post">
  <?php if($pictures): ?>
@@ -234,6 +235,7 @@
  <div class="form-group col-sm-4 col-md-3">
  <label for="variation-value">Values</label>
  <input type="text" name="variation-value" class="form-control" value="<?php echo static::e(old('variation-value', $product->variation_values)); ?>">
+ <p><i>Separate variations with comma</i></p>
  </div>
  </div>
  </div>
@@ -280,8 +282,11 @@
  <!-- /.box-header -->
  <div class="box-body">
  <div class="col-md-12">
- <a href="#" id="pictures" data-toggle="modal" class="text-center" data-target="#myModal">Select Product Picture</a>
+ <a href="#" id="pictures" data-toggle="modal" class="text-center" data-target="#modal-picture">Select Product Picture</a>
+ <?php if(isset(\App\Models\Thumbnail::first('picture_id', $product->picture_id)->path)): ?>
  <img src="<?php echo static::e(\App\Models\Thumbnail::first('picture_id', $product->picture_id)->path); ?>" id="product-picture" style="width:100%">
+ <?php endif; ?>
+ <input type="hidden" id="picture-id-picture" name="picture-id-picture" value="">
  </p>
  </div>
  <!-- /.col -->
@@ -309,7 +314,7 @@
  <?php if($pictures): ?>
  <?php $__currentLoopData = $pictures; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $picture): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
  <div class="col-md-6" style="padding-left: 0; padding-right: 0;">
- <img src="<?php echo static::e($picture->path); ?>" style="width:100%; padding: 0 5px 3px 0;">
+ <?php if(isset($picture->path)): ?><img src="<?php echo static::e($picture->path); ?>" style="width:100%; padding: 0 5px 3px 0;"><?php endif; ?>
  </div>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  <?php endif; ?>
@@ -335,11 +340,11 @@
  <script>
  $(document).ready(function(){
  $(document).on('click', '#pictures', function(){
- $("#form-product-picture").submit();
+ $("#form-picture").submit();
  });
 
  });
- $('#form-product-picture').on('submit', function(e){
+ $('#form-picture').on('submit', function(e){
  e.preventDefault();
  $.ajax({
  url:"/admin/select-picture/",
@@ -350,7 +355,7 @@
  processData:false,
  success:function(data)
  {
- $('#div-product-picture').html(data);
+ $('#div-picture').html(data);
  }
  })
  });

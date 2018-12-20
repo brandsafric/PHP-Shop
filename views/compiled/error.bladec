@@ -1,0 +1,14 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?><?php echo static::e($title); ?><?php $this->stopSection(); ?>
+<?php $this->startSection('content'); ?>
+ An error occurred
+ <?php echo static::e($error); ?>
+
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('scripts'); ?>
+<?php $this->stopSection(); ?>
+
+
+<?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.master'); } ?>

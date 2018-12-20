@@ -24,7 +24,7 @@ class Users extends \Core\Controller
         if (Data::userIsLoggedIn() === true) {
             header('Location: /');
         }
-        View::renderTemplate('Users/forgot-password.html');
+        view('forgot-password');
     }
 
     public function forgot_password_post()
@@ -35,12 +35,12 @@ class Users extends \Core\Controller
 
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         if (!$email) {
-            add_error('Невалиден имейл адрес');
+            add_error('Invalid email address');
         } else {
             $user = User::where('email', $email);
             if (count($user) > 0) {
-                if ($user[0]['status'] != 'blocked') {
-                    $user = User::find($user[0]['id']);
+                if ($user[0]->status != 'blocked') {
+                    $user = User::find($user[0]->id);
                     $user->pass_recovery_token = bin2hex(openssl_random_pseudo_bytes(64));
                     $user->pass_recovery_created_at = date("Y-m-d H:i:s");
                     $user->update();
@@ -56,7 +56,7 @@ class Users extends \Core\Controller
             }
             add_message("If there is a user with an email \"{$_POST['email']}\" a letter is sent.");
         }
-        View::renderTemplate('Users/forgot-password.html');
+        view('forgot-password');
     }
 
     public function recovery_password()
@@ -73,12 +73,12 @@ class Users extends \Core\Controller
             if (count($user) === 0) {
                 add_error('Unrecognized token');
             } else {
-                View::renderTemplate('Users/recovery-password.html');
+                view('recovery-password');
                 exit;
             }
         }
 
-        View::renderTemplate('Posts/index.html');
+        redirect('/');
     }
 
     public function recovery_password_post()
@@ -98,7 +98,7 @@ class Users extends \Core\Controller
             } else {
                 $format = 'Y-m-d H:i:s';
                 $date1 = Carbon::createFromFormat($format, date($format));
-                $date2 = Carbon::createFromFormat($format, $user[0]['pass_recovery_created_at']);
+                $date2 = Carbon::createFromFormat($format, $user[0]->pass_recovery_created_at);
 
                 if ($date1->diffInHours($date2) > 23) {
                     add_error('Expired token');
@@ -112,7 +112,7 @@ class Users extends \Core\Controller
                     } elseif (!User::isValidPassword($pass1)) {
                         add_error('The password must be at least 6 characters long and must contain at least one lowercase, one capital letter and one digit. Letters must be Latin only.');
                     } else {
-                        $user = User::find($user[0]['id']);
+                        $user = User::find($user[0]->id);
                         $user->password = password_hash($pass1, PASSWORD_BCRYPT);
                         $user->remember_token = null;
                         $user->pass_recovery_token = null;
@@ -122,10 +122,12 @@ class Users extends \Core\Controller
                     }
                 }
             }
-            redirect('signin');
+            if(!haveErrors()){
+                redirect('signin');
+            }
         }
 
-        View::renderTemplate('Users/recovery-password.html');
+        view('recovery-password');
     }
 
     public function logout()

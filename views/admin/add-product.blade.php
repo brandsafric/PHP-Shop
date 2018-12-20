@@ -17,17 +17,13 @@
 
 @section('content')
     <!-- Main content -->
-<!--    <section class="content col-md-12">
-        <button type="button" id="picture" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-            Select Product Image
-        </button>-->
         <!-- Modal -->
     <section class="content">
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="modal-picture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -41,7 +37,7 @@
                                     <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">Upload</a>
                                 </li>
                                 <li role="presentation" class="active" id="select">
-                                    <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="true">Select</a>
+                                    <a href="#div-picture" role="tab" id="div-picture-tab" data-toggle="tab" aria-controls="div-picture" aria-expanded="true">Select</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
@@ -72,7 +68,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group pull-right">
-                                            <button type="button" class="btn btn-primary btn-sm" id="picture">Select Pictures</button>
+                                            <button type="button" class="btn btn-primary btn-sm" id="select-picture1">Select Pictures</button>
                                             <input type="submit" name="upload_button" class="btn btn-primary btn-sm" value="Upload" />
                                         </div>
                                         {!! csrf() !!}
@@ -80,15 +76,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade active in" role="tabpanel" id="profile" aria-labelledby="profile-tab">
-                                    <form id="product-picture" method="post">{!! csrf() !!}</form>
+                                <div class="tab-pane fade active in" role="tabpanel" id="div-picture" aria-labelledby="div-picture-tab">
+                                    <form id="form-picture" method="post">
+                                        <input type="hidden" name="selected-id-picture" >
+                                        <input type="hidden" name="suffix" value="picture">
+                                        {!! csrf() !!}
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" id="save-changes" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                        <button type="button" id="save-changes-picture" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                                 <a href="#home1" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">Upload</a>
                             </li>
                             <li role="presentation" class="active" id="select">
-                                <a href="#profile1" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="true">Select</a>
+                                <a href="#div-picture1" role="tab" id="div-picture-tab" data-toggle="tab" aria-controls="div-picture" aria-expanded="true">Select</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -139,8 +139,8 @@
                                     {!! csrf() !!}
                                 </form>
                             </div>
-                            <div class="tab-pane fade active in" role="tabpanel" id="profile1" aria-labelledby="profile-tab">
-                                <form id="product-picture1" method="post">
+                            <div class="tab-pane fade active in" role="tabpanel" id="div-picture1" aria-labelledby="div-picture-tab">
+                                <form id="form-picture1" method="post">
                                     {!! csrf() !!}
                                 </form>
                             </div>
@@ -237,6 +237,7 @@
                                                 <div class="form-group col-sm-4 col-md-3">
                                                     <label for="variation-value">Values</label>
                                                     <input type="text" name="variation-value" class="form-control" value="{{old('variation-value', '')}}">
+                                                    <p><i>Separate variations with comma</i></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -320,8 +321,9 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="col-md-12">
-                        <a href="#" id="pictures" data-toggle="modal" class="text-center" data-target="#myModal">Select Product Picture</a>
-                        <p id="profile-picture"></p>
+                        <a href="#" id="pictures" data-toggle="modal" class="text-center" data-target="#modal-picture">Select Product Picture</a>
+                        <img src="" class="small-img" id="picture" name="picture" alt="">
+                        <input type="hidden" id="picture-id-picture" name="picture-id-picture" value="">
                     </div>
                     <!-- /.col -->
                 </div>
@@ -344,7 +346,7 @@
                 <div class="box-body" style="">
                     <div class="col-md-12">
                         <a href="#" id="pictures1" data-toggle="modal" data-target="#myModal1">Select Gallery Pictures</a>
-                        <p id="profile-picture1"></p>
+                        <p id="div-picture-picture1"></p>
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -372,14 +374,14 @@
     <script>
         $(document).ready(function(){
             $(document).on('click', '#pictures', function(){
-                $("#product-picture").submit();
+                $("#form-picture").submit();
             });
 
         });
-        $('#product-picture').on('submit', function(e){
+        $('#form-picture').on('submit', function(e){
             e.preventDefault();
             $.ajax({
-                url:"/admin/get-pictures/",
+                url:"/admin/select-picture/",
                 method:"POST",
                 data:new FormData(this),
                 contentType:false,
@@ -387,19 +389,18 @@
                 processData:false,
                 success:function(data)
                 {
-                    $('#profile').html(data);
-
+                    $('#div-picture').html(data);
                 }
             })
         });
 
         $(document).ready(function(){
             $(document).on('click', '#pictures1', function(){
-                $("#product-picture1").submit();
+                $("#form-picture1").submit();
             });
 
         });
-        $('#product-picture1').on('submit', function(e){
+        $('#form-picture1').on('submit', function(e){
             e.preventDefault();
             $.ajax({
                 url:"/admin/get-gallery-pictures/",
@@ -410,7 +411,7 @@
                 processData:false,
                 success:function(data)
                 {
-                    $('#profile1').html(data);
+                    $('#div-picture1').html(data);
 
                 }
             })
@@ -429,7 +430,7 @@
     $(document).ready(function(){
         $('#variations-div').hide();
         $('#variations').hide();
-        $(document).on('click', '#picture', function(){
+        $(document).on('click', '#select-picture1', function(){
             $("#image_file").click();
         });
     });

@@ -58,7 +58,7 @@ abstract class Model
             $execute_array = [];
             foreach ($this as $key => $index) {
                 $query .= "$key = :$key, ";
-                $execute_array[":$key"] = ($index != null ? $index : NULL);
+                $execute_array[":$key"] = $index;
             }
             $query = substr($query, 0, strlen($query) - 2);
             $obj = self::getNewInstance();
@@ -66,6 +66,7 @@ abstract class Model
 
             $query = "UPDATE " . $obj::$table . " SET $query WHERE id = '$this->id'";
             $stmt = $db->prepare($query);
+
             $stmt->execute($execute_array);
             return true;
         }catch (\Exception $e){

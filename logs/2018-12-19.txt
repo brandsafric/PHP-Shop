@@ -1,0 +1,75 @@
+[19-Dec-2018 12:04:38 Europe/Sofia] Uncaught exception: 'ErrorException' with message 'Trying to get property 'role' of non-object'
+Stack trace: #0 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Auth.php(29): Core\Error::errorHandler(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 29, Array)
+#1 C:\xampp\htdocs\shop1\02\PHP-Shop\public_html\index.php(43): Core\Auth::isAdmin()
+#2 {main}
+Thrown in 'C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Auth.php' on line 29
+[19-Dec-2018 12:04:38 Europe/Sofia] PHP Fatal error:  Uncaught Error: Class 'Core\View' not found in C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Error.php:70
+Stack trace:
+#0 [internal function]: Core\Error::exceptionHandler(Object(ErrorException))
+#1 {main}
+  thrown in C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Error.php on line 70
+[19-Dec-2018 12:04:39 Europe/Sofia] Uncaught exception: 'ErrorException' with message 'Trying to get property 'role' of non-object'
+Stack trace: #0 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Auth.php(29): Core\Error::errorHandler(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 29, Array)
+#1 C:\xampp\htdocs\shop1\02\PHP-Shop\public_html\index.php(43): Core\Auth::isAdmin()
+#2 {main}
+Thrown in 'C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Auth.php' on line 29
+[19-Dec-2018 12:04:39 Europe/Sofia] PHP Fatal error:  Uncaught Error: Class 'Core\View' not found in C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Error.php:70
+Stack trace:
+#0 [internal function]: Core\Error::exceptionHandler(Object(ErrorException))
+#1 {main}
+  thrown in C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Error.php on line 70
+[19-Dec-2018 12:04:45 Europe/Sofia] Uncaught exception: 'ErrorException' with message 'Trying to get property 'role' of non-object'
+Stack trace: #0 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Auth.php(29): Core\Error::errorHandler(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 29, Array)
+#1 C:\xampp\htdocs\shop1\02\PHP-Shop\public_html\index.php(43): Core\Auth::isAdmin()
+#2 {main}
+Thrown in 'C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Auth.php' on line 29
+[19-Dec-2018 12:04:45 Europe/Sofia] PHP Fatal error:  Uncaught Error: Class 'Core\View' not found in C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Error.php:70
+Stack trace:
+#0 [internal function]: Core\Error::exceptionHandler(Object(ErrorException))
+#1 {main}
+  thrown in C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Error.php on line 70
+[19-Dec-2018 12:13:44 Europe/Sofia] Uncaught exception: 'ParseError' with message 'syntax error, unexpected end of file, expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF)'
+Stack trace: #0 C:\xampp\htdocs\shop1\02\PHP-Shop\vendor\eftec\bladeone\lib\BladeOne.php(354): eftec\bladeone\BladeOne->evaluatePath('../views/compil...', Array)
+#1 C:\xampp\htdocs\shop1\02\PHP-Shop\vendor\eftec\bladeone\lib\BladeOne.php(287): eftec\bladeone\BladeOne->runInternal('home', Array, 1, true, 0)
+#2 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\functions.php(155): eftec\bladeone\BladeOne->run('home', Array)
+#3 C:\xampp\htdocs\shop1\02\PHP-Shop\App\Controllers\Home.php(61): view('home', Array)
+#4 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Router.php(144): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\shop1\02\PHP-Shop\public_html\index.php(95): Core\Router->dispatch('')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\shop1\02\PHP-Shop\views\compiled\home.bladec' on line 143
+[19-Dec-2018 12:13:44 Europe/Sofia] PHP Fatal error:  Uncaught Error: Class 'Core\View' not found in C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Error.php:70
+Stack trace:
+#0 [internal function]: Core\Error::exceptionHandler(Object(ParseError))
+#1 {main}
+  thrown in C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Error.php on line 70
+[19-Dec-2018 12:15:11 Europe/Sofia] Uncaught exception: 'ParseError' with message 'syntax error, unexpected end of file, expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF)'
+Stack trace: #0 C:\xampp\htdocs\shop1\02\PHP-Shop\vendor\eftec\bladeone\lib\BladeOne.php(354): eftec\bladeone\BladeOne->evaluatePath('../views/compil...', Array)
+#1 C:\xampp\htdocs\shop1\02\PHP-Shop\vendor\eftec\bladeone\lib\BladeOne.php(287): eftec\bladeone\BladeOne->runInternal('home', Array, 1, true, 0)
+#2 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\functions.php(155): eftec\bladeone\BladeOne->run('home', Array)
+#3 C:\xampp\htdocs\shop1\02\PHP-Shop\App\Controllers\Home.php(61): view('home', Array)
+#4 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Router.php(144): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\shop1\02\PHP-Shop\public_html\index.php(95): Core\Router->dispatch('')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\shop1\02\PHP-Shop\views\compiled\home.bladec' on line 143
+[19-Dec-2018 12:15:17 Europe/Sofia] Uncaught exception: 'ParseError' with message 'syntax error, unexpected end of file, expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF)'
+Stack trace: #0 C:\xampp\htdocs\shop1\02\PHP-Shop\vendor\eftec\bladeone\lib\BladeOne.php(354): eftec\bladeone\BladeOne->evaluatePath('../views/compil...', Array)
+#1 C:\xampp\htdocs\shop1\02\PHP-Shop\vendor\eftec\bladeone\lib\BladeOne.php(287): eftec\bladeone\BladeOne->runInternal('home', Array, 1, true, 0)
+#2 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\functions.php(155): eftec\bladeone\BladeOne->run('home', Array)
+#3 C:\xampp\htdocs\shop1\02\PHP-Shop\App\Controllers\Home.php(61): view('home', Array)
+#4 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Router.php(144): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\shop1\02\PHP-Shop\public_html\index.php(95): Core\Router->dispatch('')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\shop1\02\PHP-Shop\views\compiled\home.bladec' on line 143
+[19-Dec-2018 12:19:54 Europe/Sofia] Uncaught exception: 'ParseError' with message 'syntax error, unexpected end of file, expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF)'
+Stack trace: #0 C:\xampp\htdocs\shop1\02\PHP-Shop\vendor\eftec\bladeone\lib\BladeOne.php(354): eftec\bladeone\BladeOne->evaluatePath('../views/compil...', Array)
+#1 C:\xampp\htdocs\shop1\02\PHP-Shop\vendor\eftec\bladeone\lib\BladeOne.php(287): eftec\bladeone\BladeOne->runInternal('home', Array, 1, true, 0)
+#2 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\functions.php(155): eftec\bladeone\BladeOne->run('home', Array)
+#3 C:\xampp\htdocs\shop1\02\PHP-Shop\App\Controllers\Home.php(61): view('home', Array)
+#4 C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Router.php(144): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\shop1\02\PHP-Shop\public_html\index.php(95): Core\Router->dispatch('')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\shop1\02\PHP-Shop\views\compiled\home.bladec' on line 142
+[19-Dec-2018 14:05:49 Europe/Sofia] Uncaught exception: 'Exception' with message 'There is no such page'
+Stack trace: #0 C:\xampp\htdocs\shop1\02\PHP-Shop\public_html\index.php(95): Core\Router->dispatch('admin/select-pi...')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\shop1\02\PHP-Shop\Core\Router.php' on line 152
