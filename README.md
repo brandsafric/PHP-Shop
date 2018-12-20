@@ -43,7 +43,7 @@ After you copy the project to your folder you need to create a database and impo
 
 [BladeOne]: <https://github.com/EFTEC/BladeOne/>
 [AdminLTE]: <https://adminlte.io/>
-[Bootstrap 3.3.7]: <https://getbootstrap.com/>
+[Bootstrap]: <https://getbootstrap.com/>
 [jQuery]: <https://jquery.com/>
 [E-Shop]: <https://colorlib.com/wp/template/e-shop/>
 [CKEditor 4]: <https://ckeditor.com/>
