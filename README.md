@@ -12,7 +12,7 @@ This is simple e-commerce site
   - User can change his own profile data
   - Make оrders with/without logging
   - View products by category
-  - Sort category/searching products by newest, lower price, higher price
+  - Sort category/searching products by newest, lower/higher price
   - MVC architectural pattern
   - CSRF tokens
   - PDO
