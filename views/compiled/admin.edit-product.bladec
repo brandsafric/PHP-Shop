@@ -30,78 +30,8 @@
  <!-- left column -->
  <div class="col-md-12">
 
- <div class="modal fade" id="modal-picture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
- <div class="modal-dialog modal-lg" role="document">
- <div class="modal-content">
- <div class="modal-header">
- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
- <h4 class="modal-title" id="myModalLabel">Pictures</h4>
- </div>
- <div class="modal-body">
- <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
- <ul class="nav nav-tabs" id="myTabs" role="tablist">
- <li role="presentation" id="upload">
- <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">Upload</a>
- </li>
- <li role="presentation" class="active" id="select">
- <a href="#div-picture" role="tab" id="div-picture-tab" data-toggle="tab" aria-controls="div-picture" aria-expanded="true">Select</a>
- </li>
- </ul>
- <div class="tab-content" id="myTabContent">
- <div class="tab-pane fade" role="tabpanel" id="home" aria-labelledby="home-tab">
- <div class="row">
- <div class="col-md-6 pull-right">
- <form id="submit_form2" action="/admin/upload" method="post" enctype="multipart/form-data">
- <div class="form-group">
- <input type="file" name="file[]" id="image_file" multiple style="display: none"/>
- <div class="form-group">
- <label for="width" class="col-sm-4 control-label">Crop</label>
- <div class="col-sm-4">
- <input type="number" min="1" class="form-control" name="width" placeholder="Width" value="<?php echo static::e($picture_dimensions[0]); ?>">
- </div>
- <div class="col-sm-4">
- <input type="number" min="1" class="form-control" name="height" placeholder="Height" value="<?php echo static::e($picture_dimensions[1]); ?>">
- </div>
- </div>
- </div>
+ <?php echo static::e(print_select_picture_modal('picture', $picture_dimensions, $product->picture_id)); ?>
 
- <div class="row">
- <!-- checkbox -->
- <div class="form-group pull-right">
- <label>
- <input type="checkbox" class="minimal" name="crop" checked>
- Crop
- </label>
- </div>
- </div>
- <div class="form-group pull-right">
- <button type="button" class="btn btn-primary btn-sm" id="select-picture1">Select Pictures</button>
- <input type="submit" name="upload_button" class="btn btn-primary btn-sm" value="Upload" />
- </div>
- <?php echo csrf(); ?>
-
- </form>
- </div>
- </div>
- </div>
- <div class="tab-pane fade active in" role="tabpanel" id="div-picture" aria-labelledby="div-picture-tab">
- <form id="form-picture" method="post">
- <input type="hidden" name="selected-id-picture" >
- <input type="hidden" name="suffix" value="picture">
- <?php echo csrf(); ?>
-
- </form>
- </div>
- </div>
- </div>
- </div>
- <div class="modal-footer">
- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
- <button type="button" id="save-changes-picture" class="btn btn-primary" data-dismiss="modal">Save changes</button>
- </div>
- </div>
- </div>
- </div>
 
  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
  <div class="modal-dialog modal-lg" role="document">
@@ -149,7 +79,7 @@
 
  </form>
  </div>
- <div class="tab-pane fade active in" role="tabpanel" id="div-picture" aria-labelledby="div-picture-tab">
+ <div class="tab-pane fade active in" role="tabpanel" id="profile1" aria-labelledby="div-picture-tab">
  <form id="form-picture" method="post">
  <input type="hidden" name="selected-id-picture" >
  <input type="hidden" name="suffix" value="picture">
@@ -204,7 +134,7 @@
  <div class="col-sm-4">
  <select name="category-id" class="form-control" >
  <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
- <option value="<?php echo static::e($category->id); ?>" <?php if($product->category_id == $category->id): ?>selected <?php endif; ?>><?php echo static::e($category->name); ?></option>
+ <option value="<?php echo static::e($category->id); ?>" <?php if($product->category_id == $category->id || old('category-id')==$category->id): ?>selected <?php endif; ?>><?php echo static::e($category->name); ?></option>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  </select>
  </div>
@@ -235,7 +165,7 @@
  <div class="form-group col-sm-4 col-md-3">
  <label for="variation-value">Values</label>
  <input type="text" name="variation-value" class="form-control" value="<?php echo static::e(old('variation-value', $product->variation_values)); ?>">
- <p><i>Separate variations with comma</i></p>
+ <p><i>Separate variations with "|"</i></p>
  </div>
  </div>
  </div>
@@ -260,6 +190,8 @@
  <input type="hidden" id="picture-id" name="picture-id" value="<?php echo static::e($product->picture_id); ?>">
  <?php endif; ?>
  </div>
+ <input type="hidden" id="picture-id-picture" name="picture-id-picture" value="">
+
  <input type="hidden" name="_method" value="PUT">
  </form>
  </div>
@@ -284,9 +216,8 @@
  <div class="col-md-12">
  <a href="#" id="pictures" data-toggle="modal" class="text-center" data-target="#modal-picture">Select Product Picture</a>
  <?php if(isset(\App\Models\Thumbnail::first('picture_id', $product->picture_id)->path)): ?>
- <img src="<?php echo static::e(\App\Models\Thumbnail::first('picture_id', $product->picture_id)->path); ?>" id="product-picture" style="width:100%">
+ <img src="<?php echo static::e(\App\Models\Thumbnail::first('picture_id', $product->picture_id)->path); ?>" id="picture" style="width:100%">
  <?php endif; ?>
- <input type="hidden" id="picture-id-picture" name="picture-id-picture" value="">
  </p>
  </div>
  <!-- /.col -->
@@ -342,7 +273,9 @@
  $(document).on('click', '#pictures', function(){
  $("#form-picture").submit();
  });
-
+ $(document).on('click', '#select-picture1', function(){
+ $("#image_file").click();
+ });
  });
  $('#form-picture').on('submit', function(e){
  e.preventDefault();
@@ -356,6 +289,7 @@
  success:function(data)
  {
  $('#div-picture').html(data);
+
  }
  })
  });
@@ -378,7 +312,6 @@
  success:function(data)
  {
  $('#profile1').html(data);
-
  }
  })
  });
@@ -390,10 +323,9 @@
  codeSnippet_theme: 'monokai_sublime',
  height: 250
  };
-
  CKEDITOR.replace( 'description', config );
-
  </script>
+
  <script src="/js/image-picker.js"></script>
 
  <link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.min.css">
@@ -403,6 +335,5 @@
  format:'Y-m-d H:i',
  });
  </script>
-
 <?php $this->stopSection(); ?>
 <?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.admin'); } ?>

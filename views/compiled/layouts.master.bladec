@@ -334,7 +334,8 @@
  <!-- footer copyright -->
  <div class="footer-copyright">
  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
- Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+ Copyright &copy;<?php echo static::e(date("Y")); ?>
+
  All rights reserved | This template is made with
  <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -346,6 +347,9 @@
  </div>
  <!-- /container -->
 </footer>
+<div class="my-footer">
+ <span class="footer-text">Created by <a href="https://www.facebook.com/jikata81" target="_blank"><span class="author-name">Jivko Jelev</span></a></span>
+</div>
 <!-- /FOOTER -->
 
 <!-- jQuery Plugins -->

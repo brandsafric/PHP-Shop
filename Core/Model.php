@@ -14,7 +14,6 @@ use App\Config;
 abstract class Model
 {
 
-
     public static function getDB()
     {
         static $db = null;
@@ -30,25 +29,33 @@ abstract class Model
         return $db;
     }
 
+    public static function getTableName()
+    {
+        $obj = get_called_class();
+        $table_name = $obj::$table;
+        return $table_name;
+    }
+
     public static function getNewInstance()
     {
         $obj = get_called_class();
         return new $obj();
     }
 
+
     public static function all($params = null)
     {
-        $obj=self::getNewInstance();
+        $table_name = self::getTableName();
         $db = DB::getDB();
-        return $db->query("SELECT * FROM " . $obj::$table . " $params")->fetchAll(PDO::FETCH_CLASS, get_called_class());
+        return $db->query("SELECT * FROM $table_name $params")->fetchAll(PDO::FETCH_CLASS, get_called_class());
     }
 
     public static function find($id)
     {
-        $obj = self::getNewInstance();
         $db = DB::getDB();
-        $newInstance = $db->query("SELECT * FROM {$obj::$table} WHERE id = '$id'")->fetchAll(PDO::FETCH_CLASS, get_called_class());
-        return count ($newInstance) > 0 ? $newInstance[0] : null;
+        $table_name = self::getTableName();
+        $newInstance = $db->query("SELECT * FROM $table_name WHERE id = '$id'")->fetchAll(PDO::FETCH_CLASS, get_called_class());
+        return count($newInstance) > 0 ? $newInstance[0] : null;
     }
 
     public function update()
@@ -58,18 +65,16 @@ abstract class Model
             $execute_array = [];
             foreach ($this as $key => $index) {
                 $query .= "$key = :$key, ";
-                $execute_array[":$key"] = $index;
+                $execute_array[":$key"] = ($index != null ? $index : NULL);
             }
             $query = substr($query, 0, strlen($query) - 2);
-            $obj = self::getNewInstance();
             $db = DB::getDB();
 
-            $query = "UPDATE " . $obj::$table . " SET $query WHERE id = '$this->id'";
+            $query = "UPDATE " . $this::$table . " SET $query WHERE id = '$this->id'";
             $stmt = $db->prepare($query);
-
             $stmt->execute($execute_array);
             return true;
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return false;
         }
     }
@@ -80,17 +85,17 @@ abstract class Model
 
         $values = $columns = '';
         $execute_array = [];
-        foreach ($this as $key => $index){
+        foreach ($this as $key => $index) {
             $columns .= "$key, ";
             $values .= ":$key, ";
             $execute_array[":$key"] = $index;
         }
-        $columns = substr ($columns, 0, strlen($columns) - 2 );
-        $values = substr ($values, 0, strlen($values) - 2 );
+        $columns = substr($columns, 0, strlen($columns) - 2);
+        $values = substr($values, 0, strlen($values) - 2);
 
         $stmt = $db->prepare("INSERT INTO {$this::$table} ($columns) VALUES ($values)");
         $stmt->execute($execute_array);
-        $this->id=$db->lastInsertId();
+        $this->id = $db->lastInsertId();
     }
 
     public function delete()
@@ -101,17 +106,18 @@ abstract class Model
 
     public static function where($name, $value = null)
     {
+        $table_name = self::getTableName();
+        $query = "SELECT * FROM $table_name WHERE $name " . ($value == null ? 'IS NULL' : "= '$value'");
         $obj = self::getNewInstance();
-        $query = "SELECT * FROM " . $obj::$table . " WHERE $name " . ($value == null ? 'IS NULL' : "= '$value'");
         return $obj::getDB()->query($query)->fetchAll(PDO::FETCH_CLASS, get_called_class());
     }
 
     public static function first($name, $value)
     {
-        $obj = self::getNewInstance();
+        $table_name = self::getTableName();
         $db = DB::getDB();
-        $newInstance = $db->query("SELECT * FROM {$obj::$table} WHERE $name = '$value'")->fetchAll(PDO::FETCH_CLASS, get_called_class());
-        return count ($newInstance) > 0 ? $newInstance[0] : null;
+        $newInstance = $db->query("SELECT * FROM $table_name WHERE $name = '$value' LIMIT 1")->fetchAll(PDO::FETCH_CLASS, get_called_class());
+        return count($newInstance) > 0 ? $newInstance[0] : null;
     }
 
     public static function query($query)
@@ -121,7 +127,7 @@ abstract class Model
             $stmt = $db->query($query);
             $result = $stmt->fetchAll(PDO::FETCH_CLASS);
             return $result;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
@@ -133,7 +139,7 @@ abstract class Model
             $stmt = $db->query($query);
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, get_called_class());
             return $result;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
@@ -143,15 +149,15 @@ abstract class Model
         try {
             $db = self::getDB();
             $stmt = $db->query($query);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
 
     public static function count($params = null)
     {
-        $obj = self::getNewInstance();
-        return self::query("SELECT COUNT(*) as count FROM {$obj::$table} $params")[0]->count;
+        $table_name = self::getTableName();
+        return self::query("SELECT COUNT(*) as count FROM $table_name $params")[0]->count;
     }
 
 }

@@ -1,36 +1,63 @@
-table, .box-primary, .box-success{
+table, .box-primary, .box-success {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.175);
 }
-.categories-table > tbody > tr > td{
+
+.categories-table > tbody > tr > td {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
 .categories-table > tbody > tr > td > input[type=text],
-.categories-table > tbody > tr > td > select
-{
+.categories-table > tbody > tr > td > select {
     padding-top: 2px;
     padding-bottom: 2px;
     height: 24px;
 }
-.content-header{
+
+.content-header {
 }
-.box-body .col-md-12{
+
+.box-body .col-md-12 {
     margin-bottom: 10px;
 }
-.form-horizontal .form-group{
+
+.form-horizontal .form-group {
     margin-left: 0;
 }
-.row{
+
+.row {
     margin-left: 0;
     margin-right: 0;
     padding: 0;
 }
+
 @media (min-width: 992px) {
     .modal-lg {
         width: 914px;
     }
 }
-.pagination>li>a, .pagination>li>span {
+
+.pagination > li > a, .pagination > li > span {
     color: #337ab7;
     font-weight: normal;
+}
+
+.delete-file {
+    position: relative;
+    top: -129px;
+    left: 76px;
+    color: red;
+    cursor: pointer;
+}
+
+.thumbnail {
+    height: 142px;
+}
+
+.img-stretch{
+    width: 100% !important;
+}
+
+.delete-file{
+    background-color: white;
 }

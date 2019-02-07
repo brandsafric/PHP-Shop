@@ -11,6 +11,9 @@
         .tab-content{
             padding: 10px;
         }
+        .row-price{
+            margin-top: 20px !important;
+        }
     </style>
 
 @endsection
@@ -23,76 +26,7 @@
             <!-- left column -->
             <div class="col-md-12">
 
-            <div class="modal fade" id="modal-picture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Pictures</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
-                            <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                                <li role="presentation" id="upload">
-                                    <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">Upload</a>
-                                </li>
-                                <li role="presentation" class="active" id="select">
-                                    <a href="#div-picture" role="tab" id="div-picture-tab" data-toggle="tab" aria-controls="div-picture" aria-expanded="true">Select</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade" role="tabpanel" id="home" aria-labelledby="home-tab">
-                                    <div class="row">
-                                        <div class="col-md-6 pull-right">
-                                    <form id="submit_form2" action="/admin/upload" method="post" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <input type="file" name="file[]" id="image_file" multiple style="display: none"/>
-                                            <div class="form-group">
-                                                <label for="width" class="col-sm-4 control-label">Crop</label>
-                                                <div class="col-sm-4">
-                                                    <input type="number" min="1" class="form-control" name="width" placeholder="Width" value="{{ $picture_dimensions[0] }}">
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <input type="number" min="1" class="form-control" name="height" placeholder="Height" value="{{ $picture_dimensions[1] }}">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <!-- checkbox -->
-                                            <div class="form-group pull-right">
-                                                <label>
-                                                    <input type="checkbox" class="minimal" name="crop" checked>
-                                                    Crop
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group pull-right">
-                                            <button type="button" class="btn btn-primary btn-sm" id="select-picture1">Select Pictures</button>
-                                            <input type="submit" name="upload_button" class="btn btn-primary btn-sm" value="Upload" />
-                                        </div>
-                                        {!! csrf() !!}
-                                    </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade active in" role="tabpanel" id="div-picture" aria-labelledby="div-picture-tab">
-                                    <form id="form-picture" method="post">
-                                        <input type="hidden" name="selected-id-picture" >
-                                        <input type="hidden" name="suffix" value="picture">
-                                        {!! csrf() !!}
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" id="save-changes-picture" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                {{ print_select_picture_modal('picture', $picture_dimensions) }}
 
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -183,115 +117,38 @@
                                 <select name="category-id" class="form-control" >
                                     <option value="" selected disabled>Select Category</option>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        <option value="{{$category->id}}" @if(old('category-id')==$category->id) selected @endif>{{$category->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <textarea id="description" name="description" rows="10" cols="80"></textarea>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="box box-success">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Product Data</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                    </button>
+                        <div class="row-price">
+                            <div class="row">
+                                <div class="form-group col-sm-4 col-md-3">
+                                    <label for="">Price</label>
+                                    <input type="number" step=".01" min="0.01" name="price" class="form-control" value="{{old('price', '0.01')}}">
                                 </div>
-                                <!-- /.box-tools -->
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row form-group">
-                                    <label for="parent" class="col-sm-2 control-label">Product Types</label>
-                                    <div class="col-sm-4">
-                                        <select name="product-type" id="product-type" class="form-control">
-                                            <option value="simple product">Simple Product</option>
-                                            <option value="variation product">Variations Product</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="nav-tabs-custom">
-                                    <ul class="nav nav-tabs">
-                                        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Инвентар</a></li>
-                                        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="true">Attributes</a></li>
-                                        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Variations</a></li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="tab_1">
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-md-3">
-                                                    <label for="">Price</label>
-                                                    <input type="number" step=".01" min="0.01" name="price" class="form-control" value="{{old('price', '0.01')}}">
-                                                </div>
-                                                <div class="form-group col-sm-4 col-md-3">
-                                                    <label for="">Promo Price</label>
-                                                    <input type="number" step=".01" min="0.01" name="promo-price" class="form-control" value="{{old('promo-price', '')}}">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-md-3">
-                                                    <label for="variation-name">Variation Name</label>
-                                                    <input type="text" name="variation-name" class="form-control" value="{{old('variation-name', '')}}">
-                                                </div>
-                                                <div class="form-group col-sm-4 col-md-3">
-                                                    <label for="variation-value">Values</label>
-                                                    <input type="text" name="variation-value" class="form-control" value="{{old('variation-value', '')}}">
-                                                    <p><i>Separate variations with comma</i></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.tab-pane -->
-                                        <div class="tab-pane" id="tab_2">
-                                            <div id="variations-div">
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <select class="form-control">
-                                                            <option>Персонализиран атрибут за продукта</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <button type="button" class="btn btn-default" id="add-variation">Add</button>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                            <div id="all-variations">
-                                                            </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <!-- /.tab-pane -->
-                                        <div class="tab-pane" id="tab_3">
-                                            <div id="variations">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                    <div class="form-group col-md-6">
-                                                        <select name="parent1" id="parent1" class="form-control" >
-                                                            <option value="add variation">Създаване на вариация</option>
-                                                            <option value="add variations of all products">Създаване на вариации от всички атрибути</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <button type="button" id="variations-add" class="btn btn-default">OK</button>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.tab-pane -->
-                                    </div>
-                                    <!-- /.tab-content -->
+                                <div class="form-group col-sm-4 col-md-3">
+                                    <label for="">Promo Price</label>
+                                    <input type="number" step=".01" min="0.01" name="promo-price" class="form-control" value="{{old('promo-price', '')}}">
                                 </div>
                             </div>
-                            <!-- /.box-body -->
+                            <div class="row">
+                                <div class="form-group col-sm-4 col-md-3">
+                                    <label for="variation-name">Variation Name</label>
+                                    <input type="text" name="variation-name" class="form-control" value="{{old('variation-name', '')}}">
+                                </div>
+                                <div class="form-group col-sm-4 col-md-3">
+                                    <label for="variation-value">Values</label>
+                                    <input type="text" name="variation-value" class="form-control" value="{{old('variation-value', '')}}">
+                                    <p><i>Separate variations with "|"</i></p>
+                                </div>
+                            </div>
                         </div>
-                    <!-- /.box -->
                     </div>
                 </div>
                 <!-- /.box-body -->
-
-
 
                 <!-- footer -->
                 <div class="box-footer">
@@ -300,14 +157,10 @@
                 {!! csrf() !!}
                 <div id="text"></div>
                 <div id="text1"></div>
+                <input type="hidden" id="picture-id-picture" name="picture-id-picture" value="">
             </form>
-
         </div>
-
-
     </div>
-
-
 
     <div class="col-md-3">
             <div class="box box-primary">
@@ -322,8 +175,7 @@
                 <div class="box-body">
                     <div class="col-md-12">
                         <a href="#" id="pictures" data-toggle="modal" class="text-center" data-target="#modal-picture">Select Product Picture</a>
-                        <img src="" class="small-img" id="picture" name="picture" alt="">
-                        <input type="hidden" id="picture-id-picture" name="picture-id-picture" value="">
+                        <img src="" class="small-img img-stretch" id="picture" name="picture" alt="">
                     </div>
                     <!-- /.col -->
                 </div>
@@ -346,7 +198,7 @@
                 <div class="box-body" style="">
                     <div class="col-md-12">
                         <a href="#" id="pictures1" data-toggle="modal" data-target="#myModal1">Select Gallery Pictures</a>
-                        <p id="div-picture-picture1"></p>
+                        <div id="profile-picture1"></div>
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -360,10 +212,9 @@
         <form action="/admin/add-variation" id="all-variations-form1" method="post">
             <div id="all-variations1">
             </div>
-            <input type="submit">
             {!! csrf() !!}
         </form>
-
+        <form id="form-delete-file">{!! csrf() !!}<input type="hidden" name="filename" id="filename"></form>
     </section>
 @endsection
 
@@ -378,6 +229,7 @@
             });
 
         });
+        var li;
         $('#form-picture').on('submit', function(e){
             e.preventDefault();
             $.ajax({
@@ -390,6 +242,30 @@
                 success:function(data)
                 {
                     $('#div-picture').html(data);
+                    $('.delete-file').on('click', function() {
+                        var filename=$(this).parent().find("img").attr("src");
+                        var delete_file=$('#filename').attr('value', filename);
+                        li=$(this).closest('li');
+                        $("#delete-form-submit").html("$('#form-delete-file').on('submit', function(e){\n" +
+                            "                            e.preventDefault();\n" +
+                            "                            $.ajax({\n" +
+                            "                                url:\"/admin/delete-file/\",\n" +
+                            "                                method:\"POST\",\n" +
+                            "                                data:new FormData(this),\n" +
+                            "                                contentType:false,\n" +
+                            "                                //cache:false,\n" +
+                            "                                processData:false,\n" +
+                            "                                success:function(data)\n" +
+                            "                                {\n" +
+                            "                                   li.remove();\n" +
+                            "                                }\n" +
+                            "                            })\n" +
+                            "                        });\n");
+
+                        $('#form-delete-file').submit();
+
+
+                    });
                 }
             })
         });
@@ -412,12 +288,33 @@
                 success:function(data)
                 {
                     $('#div-picture1').html(data);
+                    $('.delete-file').on('click', function() {
+                        var filename = $(this).parent().find("img").attr("src");
+                        var delete_file = $('#filename').attr('value', filename);
+                        li = $(this).closest('li');
+                        $("#delete-form-submit").html("$('#form-delete-file').on('submit', function(e){\n" +
+                            "                            e.preventDefault();\n" +
+                            "                            $.ajax({\n" +
+                            "                                url:\"/admin/delete-file/\",\n" +
+                            "                                method:\"POST\",\n" +
+                            "                                data:new FormData(this),\n" +
+                            "                                contentType:false,\n" +
+                            "                                //cache:false,\n" +
+                            "                                processData:false,\n" +
+                            "                                success:function(data)\n" +
+                            "                                {\n" +
+                            "                                   li.remove();\n" +
+                            "                                }\n" +
+                            "                            })\n" +
+                            "                        });\n");
 
+                        $('#form-delete-file').submit();
+                    });
                 }
             })
         });
     </script>
-
+    <script id="delete-form-submit"></script>
     <script data-sample="1">
         var config = {
             extraPlugins: 'colorbutton, font',
@@ -487,21 +384,6 @@
                 .map(function(){return $(this).val();}).get();
             var values = $("input[name='value[]']")
                 .map(function(){return $(this).val();}).get();
-
-//            var name='';
-//             console.log(values[0].split('|')[0]);
-            // var value='';
-            // for(f in values){
-            //     if(values[f.valueOf()]!='' && names[f.valueOf()!='']) {
-            //         value += values[f.valueOf()] + '|';
-            //     }
-            // }
-
-/*            for(f in values){
-                if(values[f.valueOf()]!='' && names[f.valueOf()]) {
-                    value += values[f.valueOf()] + '|';
-                }
-            }*/
 
             var html='';
             html = '<div class="row"><div class="col-md-12">';

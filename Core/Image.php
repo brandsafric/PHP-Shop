@@ -62,7 +62,8 @@ class Image
     public function getUniqueName($dest, $suffix = null)
     {
         $new_name = pathinfo($dest);
-
+//my_var_dump($new_name['dirname']);
+//die;
         if (!file_exists($new_name['dirname'])) {
             mkdir($new_name['dirname'], 0777, true);
         }

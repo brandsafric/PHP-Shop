@@ -5,7 +5,7 @@ namespace App\Models;
 
 class Thumbnail extends \Core\Model
 {
-    public static $table = 'thumbnails';
+    protected static $table = 'thumbnails';
 
     public static function getThumbnail($picture_id)
     {

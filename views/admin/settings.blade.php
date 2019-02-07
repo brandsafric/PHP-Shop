@@ -286,6 +286,7 @@
             </form>
         </div>
     </section>
+    <form id="form-delete-file">{!! csrf() !!}<input type="hidden" name="filename" id="filename"></form>
     <!-- /Main content -->
 @endsection
 
@@ -301,6 +302,8 @@
             });
 
         });
+        var li;
+
         $(document).on('click', '#site-icon', function(){
             $("#form-icon").submit();
         });
@@ -316,6 +319,28 @@
                 success:function(data)
                 {
                     $('#div-icon').html(data);
+                    $('.delete-file').on('click', function() {
+                        var filename = $(this).parent().find("img").attr("src");
+                        var delete_file = $('#filename').attr('value', filename);
+                        li = $(this).closest('li');
+                        $("#delete-form-submit").html("$('#form-delete-file').on('submit', function(e){\n" +
+                            "                            e.preventDefault();\n" +
+                            "                            $.ajax({\n" +
+                            "                                url:\"/admin/delete-file/\",\n" +
+                            "                                method:\"POST\",\n" +
+                            "                                data:new FormData(this),\n" +
+                            "                                contentType:false,\n" +
+                            "                                //cache:false,\n" +
+                            "                                processData:false,\n" +
+                            "                                success:function(data)\n" +
+                            "                                {\n" +
+                            "                                   li.remove();\n" +
+                            "                                }\n" +
+                            "                            })\n" +
+                            "                        });\n");
+
+                        $('#form-delete-file').submit();
+                    });
                 }
             })
         });
@@ -336,8 +361,33 @@
                 success:function(data)
                 {
                     $('#div-logo').html(data);
+                    $('.delete-file').on('click', function() {
+                        var filename = $(this).parent().find("img").attr("src");
+                        var delete_file = $('#filename').attr('value', filename);
+                        li = $(this).closest('li');
+                        $("#delete-form-submit").html("$('#form-delete-file').on('submit', function(e){\n" +
+                            "                            e.preventDefault();\n" +
+                            "                            $.ajax({\n" +
+                            "                                url:\"/admin/delete-file/\",\n" +
+                            "                                method:\"POST\",\n" +
+                            "                                data:new FormData(this),\n" +
+                            "                                contentType:false,\n" +
+                            "                                //cache:false,\n" +
+                            "                                processData:false,\n" +
+                            "                                success:function(data)\n" +
+                            "                                {\n" +
+                            "                                   li.remove();\n" +
+                            "                                }\n" +
+                            "                            })\n" +
+                            "                        });\n");
+
+                        $('#form-delete-file').submit();
+                    });
+
                 }
             })
         });
     </script>
+    <script id="delete-form-submit"></script>
+
 @endsection

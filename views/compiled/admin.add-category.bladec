@@ -22,7 +22,7 @@
  <div class="box-body">
  <div class="form-group">
  <label for="name">Category Name</label>
- <input type="text" class="form-control" id="name" name="name" placeholder="Category Name" onchange="document.getElementById('alias').value=this.value">
+ <input type="text" class="form-control" id="name" name="name" placeholder="Category Name">
  </div>
  <div class="form-group">
  <label for="alias">Alias</label>
@@ -33,7 +33,7 @@
  <select name="parent" id="parent" class="form-control" >
  <option value="">Without Parent</option>
  <?php $__currentLoopData = $cats; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
- <option value="<?php echo static::e($category->id); ?>"><?php echo static::e($category->name); ?></option>
+ <option value="<?php echo static::e($category->id); ?>" <?php if(old('parent')==$category->id): ?>selected <?php endif; ?>><?php echo static::e($category->name); ?></option>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  </select>
  </div>
@@ -53,6 +53,10 @@
 <?php $this->stopSection(); ?>
 
 <?php $this->startSection('scripts'); ?>
-
+ <script>
+ $('#name').on('change', function () {
+ $('#alias').val($('#name').val());
+ })
+ </script>
 <?php $this->stopSection(); ?>
 <?php if (@$_shouldextend[1]) { echo $this->runChild('layouts.admin'); } ?>

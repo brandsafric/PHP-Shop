@@ -296,6 +296,10 @@
       }
       thumbnail.on("click", this.clicked);
       thumbnail.append(image);
+      var delete_file=jQuery('<i>');
+      delete_file.addClass('fa fa-window-close fa-lg delete-file');
+      delete_file.attr('title', 'Delete this file');
+      thumbnail.append(delete_file);
       if (this.opts.show_label) {
         thumbnail.append(jQuery("<p/>").html(this.label()));
       }

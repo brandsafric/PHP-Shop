@@ -21,17 +21,18 @@
  <form action="/admin/categories/<?php echo static::e($category->id); ?>" method="post">
  <td><?php echo static::e($key+1); ?></td>
  <td>
- <input type="text" name="name" class="form-control input-sm" value="<?php echo static::e($category->name); ?>">
+ <input type="text" name="name" class="form-control input-sm" value="<?php echo static::e(old('name', $category->name)); ?>">
  </td>
  <td>
  <input type="text" name="alias" class="form-control input-sm" value="<?php echo static::e($category->alias); ?>">
  </td>
  <td>
- <select name="parent" id="parent" class="form-control input-sm" >
+ <select name="parent" id="parent" class="form-control input-sm">
  <option value="">Without Parent</option>
  <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $this->incrementLoopIndices(); $loop = $this->getFirstLoop(); ?>
  <?php if($cat->id != $category->id): ?>
- <option value="<?php echo static::e($cat->id); ?>" <?php if($cat->id==$category->parent_id): ?> selected <?php endif; ?>><?php echo static::e($cat->name); ?></option>
+ <option value="<?php echo static::e($cat->id); ?>"
+ <?php if($cat->id==$category->parent_id): ?> selected <?php endif; ?>><?php echo static::e($cat->name); ?></option>
  <?php endif; ?>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  </select>
@@ -42,6 +43,7 @@
  </td>
  <?php echo csrf(); ?>
 
+ <input type="hidden" name="category-id" value="<?php echo static::e($category->id); ?>">
  </form>
  <td>
  <form action="/admin/categories/<?php echo static::e($category->id); ?>" method="post">

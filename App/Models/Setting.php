@@ -5,7 +5,7 @@ namespace App\Models;
 
 class Setting extends \Core\Model
 {
-    public static $table = 'settings';
+    protected static $table = 'settings';
 
     public static function addOrUpdate($name, $value)
     {

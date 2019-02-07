@@ -13,7 +13,7 @@ use DateTime;
 
 class Product extends \Core\Model
 {
-    public static $table = 'products';
+    protected static $table = 'products';
 
     public static function isNewProduct($product)
     {

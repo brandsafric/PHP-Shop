@@ -11,7 +11,7 @@ namespace App\Models;
 
 class Category extends \Core\Model
 {
-    public static $table = 'categories';
+    protected static $table = 'categories';
 
     public function isParent()
     {

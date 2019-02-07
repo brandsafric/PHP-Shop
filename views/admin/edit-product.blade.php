@@ -30,76 +30,7 @@
             <!-- left column -->
             <div class="col-md-12">
 
-                <div class="modal fade" id="modal-picture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Pictures</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
-                                    <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                                        <li role="presentation" id="upload">
-                                            <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">Upload</a>
-                                        </li>
-                                        <li role="presentation" class="active" id="select">
-                                            <a href="#div-picture" role="tab" id="div-picture-tab" data-toggle="tab" aria-controls="div-picture" aria-expanded="true">Select</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade" role="tabpanel" id="home" aria-labelledby="home-tab">
-                                            <div class="row">
-                                                <div class="col-md-6 pull-right">
-                                                    <form id="submit_form2" action="/admin/upload" method="post" enctype="multipart/form-data">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file[]" id="image_file" multiple style="display: none"/>
-                                                            <div class="form-group">
-                                                                <label for="width" class="col-sm-4 control-label">Crop</label>
-                                                                <div class="col-sm-4">
-                                                                    <input type="number" min="1" class="form-control" name="width" placeholder="Width" value="{{ $picture_dimensions[0] }}">
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <input type="number" min="1" class="form-control" name="height" placeholder="Height" value="{{ $picture_dimensions[1] }}">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <!-- checkbox -->
-                                                            <div class="form-group pull-right">
-                                                                <label>
-                                                                    <input type="checkbox" class="minimal" name="crop" checked>
-                                                                    Crop
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group pull-right">
-                                                            <button type="button" class="btn btn-primary btn-sm" id="select-picture1">Select Pictures</button>
-                                                            <input type="submit" name="upload_button" class="btn btn-primary btn-sm" value="Upload" />
-                                                        </div>
-                                                        {!! csrf() !!}
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade active in" role="tabpanel" id="div-picture" aria-labelledby="div-picture-tab">
-                                            <form id="form-picture" method="post">
-                                                <input type="hidden" name="selected-id-picture" >
-                                                <input type="hidden" name="suffix" value="picture">
-                                                {!! csrf() !!}
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" id="save-changes-picture" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{ print_select_picture_modal('picture', $picture_dimensions, $product->picture_id) }}
 
                 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
@@ -146,7 +77,7 @@
                                                 {!! csrf() !!}
                                             </form>
                                         </div>
-                                        <div class="tab-pane fade active in" role="tabpanel" id="div-picture" aria-labelledby="div-picture-tab">
+                                        <div class="tab-pane fade active in" role="tabpanel" id="profile1" aria-labelledby="div-picture-tab">
                                             <form id="form-picture" method="post">
                                                 <input type="hidden" name="selected-id-picture" >
                                                 <input type="hidden" name="suffix" value="picture">
@@ -199,7 +130,7 @@
                                         <div class="col-sm-4">
                                             <select name="category-id" class="form-control" >
                                                 @foreach($categories as $category)
-                                                    <option value="{{$category->id}}" @if($product->category_id == $category->id)selected @endif>{{$category->name}}</option>
+                                                    <option value="{{$category->id}}" @if($product->category_id == $category->id || old('category-id')==$category->id)selected @endif>{{$category->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -225,12 +156,12 @@
                                         <div class="row">
                                             <div class="form-group col-sm-4 col-md-3">
                                                 <label for="variation-name">Variation Name</label>
-                                                <input type="text" name="variation-name" class="form-control" value="{{old('variation-name', $product->variation_name)}}">
+                                                <input type="text" name="variation-name" class="form-control" value="{{ old('variation-name', $product->variation_name) }}">
                                             </div>
                                             <div class="form-group col-sm-4 col-md-3">
                                                 <label for="variation-value">Values</label>
                                                 <input type="text" name="variation-value" class="form-control" value="{{old('variation-value', $product->variation_values)}}">
-                                                <p><i>Separate variations with comma</i></p>
+                                                <p><i>Separate variations with "|"</i></p>
                                             </div>
                                         </div>
                                     </div>
@@ -254,6 +185,8 @@
                                     <input type="hidden" id="picture-id" name="picture-id" value="{{ $product->picture_id }}">
                                 @endif
                             </div>
+                            <input type="hidden" id="picture-id-picture" name="picture-id-picture" value="">
+
                             <input type="hidden" name="_method" value="PUT">
                         </form>
                     </div>
@@ -278,9 +211,8 @@
                             <div class="col-md-12">
                                 <a href="#" id="pictures" data-toggle="modal" class="text-center" data-target="#modal-picture">Select Product Picture</a>
                                 @if(isset(\App\Models\Thumbnail::first('picture_id', $product->picture_id)->path))
-                                    <img src="{{ \App\Models\Thumbnail::first('picture_id', $product->picture_id)->path }}" id="product-picture" style="width:100%">
+                                    <img src="{{ \App\Models\Thumbnail::first('picture_id', $product->picture_id)->path }}" id="picture" style="width:100%">
                                 @endif
-                                <input type="hidden" id="picture-id-picture" name="picture-id-picture" value="">
                                 </p>
                             </div>
                             <!-- /.col -->
@@ -336,7 +268,9 @@
             $(document).on('click', '#pictures', function(){
                 $("#form-picture").submit();
             });
-
+            $(document).on('click', '#select-picture1', function(){
+                $("#image_file").click();
+            });
         });
         $('#form-picture').on('submit', function(e){
             e.preventDefault();
@@ -350,6 +284,7 @@
                 success:function(data)
                 {
                     $('#div-picture').html(data);
+
                 }
             })
         });
@@ -372,7 +307,6 @@
                 success:function(data)
                 {
                     $('#profile1').html(data);
-
                 }
             })
         });
@@ -384,10 +318,9 @@
             codeSnippet_theme: 'monokai_sublime',
             height: 250
         };
-
         CKEDITOR.replace( 'description', config );
-
     </script>
+
     <script src="/js/image-picker.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.min.css">
@@ -397,5 +330,4 @@
             format:'Y-m-d H:i',
         });
     </script>
-
 @endsection

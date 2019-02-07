@@ -13,7 +13,7 @@ use Core\Data;
 
 class ProductOrder extends \Core\Model
 {
-    public static $table='productorders';
+    protected static $table='productorders';
 
     public static function getWhereClause()
     {

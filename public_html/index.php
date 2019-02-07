@@ -1,11 +1,11 @@
 <?php
 
 $actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-if (strpos($actual_link, '//')){
-    while (strpos($actual_link, '//')){
+if (strpos($actual_link, '//')) {
+    while (strpos($actual_link, '//')) {
         $actual_link = str_replace('//', '/', $actual_link);
     }
-    header ('Location: ' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://' . $actual_link);
+    header('Location: ' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://' . $actual_link);
 }
 require '../vendor/autoload.php';
 require '../Core/functions.php';
@@ -40,7 +40,7 @@ $router->post('order', 'Orders@store');
 $router->post('remove-ordered-product', 'Orders@removeOrderedProduct');
 $router->get('category/{category}', 'Home@index');
 
-if(\Core\Auth::isAdmin()) {
+if (\Core\Auth::isAdmin()) {
     $router->get('admin', 'Admin@index');
     $router->get('admin/settings', 'Admin@settings');
     $router->post('admin/get-pictures', 'Admin@getPictures');
@@ -84,13 +84,15 @@ if(\Core\Auth::isAdmin()) {
 
     //ProductOrders
     $router->put('admin/productorders/{id}', 'ProductOrders@updateAdmin');
+
+    $router->post('admin/delete-file', 'Admin@deleteFile');
 }
 
-$url=$_SERVER['QUERY_STRING'];
-if($url!=''){
-    ($_SERVER['QUERY_STRING'][strlen($_SERVER['QUERY_STRING'])-1])=='/'
+$url = $_SERVER['QUERY_STRING'];
+if ($url != '') {
+    ($_SERVER['QUERY_STRING'][strlen($_SERVER['QUERY_STRING']) - 1]) == '/'
         ? $_SERVER['QUERY_STRING']
-        : $_SERVER['QUERY_STRING'] .'/';
+        : $_SERVER['QUERY_STRING'] . '/';
 }
 $router->dispatch($url);
 

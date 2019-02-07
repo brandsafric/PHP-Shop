@@ -83,7 +83,6 @@ function init()
     }
     if($_SERVER['REQUEST_METHOD']=='POST'){
         $_SESSION['old']=$_POST;
-        //unset($_POST);
     }
 
     if(!isset($_SESSION['errors'])) {
@@ -151,6 +150,9 @@ function view($view, $args = [])
         if($args['orders']!=null) {
             $args['total_price'] = getTotalPriceForAllOrders($args['orders']);
         }
+
+//        my_var_dump($_SESSION['old']);
+//        die;
 
         echo $blade->run($view, $args);
         if($_SERVER['REQUEST_METHOD']!='POST'){
@@ -358,4 +360,78 @@ function paginator(&$current_page, $page_num)
 function have_post($name)
 {
     return isset($_POST[$name]) && $_POST[$name] != '';
+}
+
+function print_select_picture_modal($suffix, $picture_dimensions, $selected_id = null)
+{?>
+    <div class="modal fade" id="modal-<?= $suffix ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Pictures</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                            <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                                <li role="presentation" id="upload">
+                                    <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">Upload</a>
+                                </li>
+                                <li role="presentation" class="active" id="select">
+                                    <a href="#div-<?= $suffix ?>" role="tab" id="div-<?= $suffix ?>-tab" data-toggle="tab" aria-controls="div-<?= $suffix ?>" aria-expanded="true">Select</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade" role="tabpanel" id="home" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6 pull-right">
+                                    <form id="submit_form2" action="/admin/upload" method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <input type="file" name="file[]" id="image_file" multiple style="display: none"/>
+                                            <div class="form-group">
+                                                <label for="width" class="col-sm-4 control-label">Crop</label>
+                                                <div class="col-sm-4">
+                                                    <input type="number" min="1" class="form-control" name="width" placeholder="Width" value="<?= $picture_dimensions[0] ?>">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <input type="number" min="1" class="form-control" name="height" placeholder="Height" value="<?= $picture_dimensions[1] ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <!-- checkbox -->
+                                            <div class="form-group pull-right">
+                                                <label>
+                                                    <input type="checkbox" class="minimal" name="crop" checked>
+                                                    Crop
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group pull-right">
+                                            <button type="button" class="btn btn-primary btn-sm" id="select-<?= $suffix ?>1">Select Pictures</button>
+                                            <input type="submit" name="upload_button" class="btn btn-primary btn-sm" value="Upload" />
+                                        </div>
+                                        <?php echo csrf() ?>
+                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade active in" role="tabpanel" id="div-<?= $suffix ?>" aria-labelledby="div-<?= $suffix ?>-tab">
+                                    <form id="form-<?= $suffix ?>" method="post">
+                                        <input type="hidden" name="selected-id-<?= $suffix ?>" value="<?= $selected_id ?>" >
+                                        <input type="hidden" name="suffix" value="<?= $suffix ?>">
+                                        <?php echo csrf() ?>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="save-changes-<?= $suffix ?>" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div><?php
 }

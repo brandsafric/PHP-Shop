@@ -5,7 +5,7 @@ namespace App\Models;
 
 class User extends \Core\Model
 {
-    public static $table = 'users';
+    protected static $table = 'users';
 
     public static function isValidUsername($username)
     {

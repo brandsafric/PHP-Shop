@@ -11,7 +11,7 @@ namespace App\Models;
 
 class Order extends \Core\Model
 {
-    public static $table='orders';
+    protected static $table='orders';
 
     public static function getStatusBadgeColor($status)
     {

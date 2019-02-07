@@ -278,3 +278,52 @@ nav >ul >li >ul >li>ul>li:hover ul {
     margin-bottom: 6px !important;
     margin-top: 0 !important;
 }
+
+.my-footer {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    height: auto;
+    min-height: 21px;
+    z-index: 2147483647;
+    background: rgb(100, 88, 98);
+    color: rgb(255, 255, 255);
+    line-height: 21px;
+    padding: 4px 18px;
+    font-family: verdana, arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+    bottom: 0px;
+    opacity: 1;
+}
+
+@media screen and (max-width: 992px) {
+    .footer {
+        padding: 0 18px;
+    }
+}
+
+.footer-text {
+    display: block;
+    text-align: center;
+}
+
+.author-name {
+    text-decoration: none;
+    color: rgb(241, 214, 0);
+}
+
+.footer-text > a, .footer-text > a:hover {
+    text-decoration: none;
+}
+
+.before-footer {
+    min-height: 20px;
+}
+
+.forgot-password{
+    margin-top: 10px;
+}
+.forgot-password > a {
+    color: dodgerblue;
+}

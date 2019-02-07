@@ -22,7 +22,7 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="name">Category Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Category Name" onchange="document.getElementById('alias').value=this.value">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Category Name">
                     </div>
                     <div class="form-group">
                         <label for="alias">Alias</label>
@@ -33,7 +33,7 @@
                         <select name="parent" id="parent" class="form-control" >
                             <option value="">Without Parent</option>
                             @foreach($cats as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{$category->id}}" @if(old('parent')==$category->id)selected @endif>{{$category->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -52,5 +52,9 @@
 @endsection
 
 @section('scripts')
-
+    <script>
+        $('#name').on('change', function () {
+            $('#alias').val($('#name').val());
+        })
+    </script>
 @endsection

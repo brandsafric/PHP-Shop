@@ -116,6 +116,8 @@ class Products extends \Core\Controller
             add_error('You must select datetime');
         }
 
+        if(!postHave('variation-name'))
+
         if(!haveErrors()) {
             $product = Product::find($id);
             $product->title = $_POST['title'];
@@ -125,8 +127,7 @@ class Products extends \Core\Controller
             $product->promo_price=($_POST['promo-price']!='' ? $_POST['promo-price'] : NULL);
             $product->variation_name=($_POST['variation-name']!='' ? $_POST['variation-name'] : NULL);
             $product->variation_values=($_POST['variation-value']!='' ? $_POST['variation-value'] : NULL);
-//            my_var_dump($_POST['picture-id']);
-            $product->picture_id=isset($_POST['picture-id']) ? $_POST['picture-id'] : NULL;
+            $product->picture_id=isset($_POST['picture-id-picture']) ? $_POST['picture-id-picture'] : NULL;
             $product->updated_at=$_POST['datetime'];
 
             $product->update();
@@ -172,7 +173,7 @@ class Products extends \Core\Controller
             $product->availability = 'In Stock';
             $product->description = $_POST['description'];
             $product->category_id = $_POST['category-id'];
-            $product->picture_id = postOrNull('picture-id');
+            $product->picture_id = postOrNull('picture-id-picture');
 
             if (postHave('variation-name')) {
                 if (postHave('variation-value')) {
@@ -187,8 +188,8 @@ class Products extends \Core\Controller
 
             $product->save();
 
-            if (isset($_POST['gallery-picture-id'])) {
-                foreach ($_POST['gallery-picture-id'] as $picture) {
+            if (isset($_POST['gallery-pictures'])) {
+                foreach ($_POST['gallery-pictures'] as $picture) {
                     $pcx = new ProductPicture();
                     $pcx->picture_id = $picture;
                     $pcx->product_id = $product->id;

@@ -5,5 +5,5 @@ namespace App\Models;
 
 class Picture extends \Core\Model
 {
-    public static $table = 'pictures';
+    protected static $table = 'pictures';
 }
