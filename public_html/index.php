@@ -90,9 +90,7 @@ if (\Core\Auth::isAdmin()) {
 
 $url = $_SERVER['QUERY_STRING'];
 if ($url != '') {
-    ($_SERVER['QUERY_STRING'][strlen($_SERVER['QUERY_STRING']) - 1]) == '/'
-        ? $_SERVER['QUERY_STRING']
-        : $_SERVER['QUERY_STRING'] . '/';
+    ($url[strlen($_SERVER['QUERY_STRING']) - 1]) == '/' ? $url : $url . '/';
 }
 $router->dispatch($url);
 
