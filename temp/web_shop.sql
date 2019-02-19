@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2018 at 09:57 AM
+-- Generation Time: Feb 19, 2019 at 06:28 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -36,6 +36,16 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `alias`, `parent_id`) VALUES
+(1, 'Clothes', 'clothes', NULL),
+(2, 'T-Shirt', 't-shirt', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -63,6 +73,11 @@ CREATE TABLE `pictures` (
   `path` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `pictures`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `productorders`
@@ -73,11 +88,17 @@ CREATE TABLE `productorders` (
   `user_id` int(11) DEFAULT NULL,
   `session_id` varchar(26) DEFAULT NULL,
   `product_id` int(11) NOT NULL,
-  `variation` varchar(20) NOT NULL,
+  `variation` varchar(20) DEFAULT NULL,
   `price` decimal(10,0) DEFAULT NULL,
   `qty` int(11) NOT NULL,
   `order_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `productorders`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -90,6 +111,11 @@ CREATE TABLE `productpictures` (
   `product_id` int(11) NOT NULL,
   `picture_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `productpictures`
+--
+
 
 -- --------------------------------------------------------
 
@@ -112,6 +138,12 @@ CREATE TABLE `products` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `products`
+--
+
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `reviews`
@@ -126,6 +158,11 @@ CREATE TABLE `reviews` (
   `product_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `reviews`
+--
+
 
 -- --------------------------------------------------------
 
@@ -167,6 +204,13 @@ CREATE TABLE `thumbnails` (
   `picture_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `thumbnails`
+--
+
+
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
@@ -192,6 +236,15 @@ CREATE TABLE `users` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `users`
+--
+
+
+
+--
+-- Indexes for dumped tables
+--
 
 --
 -- Indexes for table `categories`
@@ -276,43 +329,43 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10000;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `productorders`
 --
 ALTER TABLE `productorders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `productpictures`
 --
 ALTER TABLE `productpictures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -324,13 +377,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `thumbnails`
 --
 ALTER TABLE `thumbnails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
