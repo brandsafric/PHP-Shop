@@ -12,7 +12,7 @@ This is simple e-commerce site
   - User can change his own profile data
   - Make оrders with/without logging
   - View products by category
-  - Sort category/searching products by newest, lower price, higher price
+  - Sort category/searching products by newest, lower/higher price
   - MVC architectural pattern
   - CSRF tokens
   - PDO
@@ -32,19 +32,21 @@ This is simple e-commerce site
 
 #### Project Use
   - [BladeOne] - BladeOne Blade Template Engine
-  - [AdminLTE] Control Panel Template
+  - [AdminLTE] - Control Panel Template
   - [Bootstrap]
   - [jQuery]
   - [E-Shop] - Website template by [Colorlib]
   - [CKEditor 4] - WYSIWYG html editor
+  - [Carbon] - A simple API extension for DateTime
 
 
 After you copy the project to your folder you need to create a database and import "/temp/web_shop.sql" file and you must set your database access options in "/App/Config.php"
 
 [BladeOne]: <https://github.com/EFTEC/BladeOne/>
 [AdminLTE]: <https://adminlte.io/>
-[Bootstrap 3.3.7]: <https://getbootstrap.com/>
+[Bootstrap]: <https://getbootstrap.com/>
 [jQuery]: <https://jquery.com/>
 [E-Shop]: <https://colorlib.com/wp/template/e-shop/>
 [CKEditor 4]: <https://ckeditor.com/>
 [Colorlib]: <https://colorlib.com/>
+[Carbon]: <http://carbon.nesbot.com>
