@@ -19,12 +19,14 @@ This is simple e-commerce site
   - GET/POST/PUT/DELETE requests
   - Notifying the user that the site uses cookies
   - Products pagination
+  - AJAX removing products from your cart
 
 #### Admin Can
 - Do all CRUD operations on categories/products/users/orders
 - Create subcategories
 - Block users
-- Can change picture size and thumbnail size before uploading
+- Set picture size and thumbnail size before uploading
+- Use my own file manager to select / delete photos (jQuery and AJAX)
 - Select site icon
 - Select site logo
 - Change currency symbol and position (left or right)
