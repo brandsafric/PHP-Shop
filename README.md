@@ -1,6 +1,4 @@
-# PHP-Shop
-
-This is simple e-commerce site
+![cover](temp/cover.png)
 
 #### Description
   - User registration
