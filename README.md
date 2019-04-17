@@ -1,3 +1,14 @@
+After you copy the project to your folder you need to create a database and import "/temp/web_shop.sql" file and you must set your database access options in "/App/Config.php".
+
+You must place the project in the root folder of hosting or if you put it in a subfolder, you should point it from httpd.conf to the public_html folder where it is placed
+Example For Linux with XAMPP
+DocumentRoot "/opt/lampp/htdocs/project_folder/public_html"
+<Directory "/opt/lampp/htdocs/project_folder/public_html">
+
+Example For Windows with XAMPP
+DocumentRoot "C:/xampp/htdocs/project_folder/public_html"
+<Directory "C:/xampp/htdocs/project_folder/public_html">
+
 ![cover](temp/cover.png)
 
 #### Description
